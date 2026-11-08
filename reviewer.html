@@ -1,0 +1,185 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>VirtuOS — Reviewer</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+  :root { --ink:#1a1a1a; --muted:#666; --line:#ddd; --bg:#faf9f7; --accent:#2b5d4f; }
+  * { box-sizing: border-box; }
+  body { margin:0; font:16px/1.55 Georgia, "Iowan Old Style", serif; color:var(--ink); background:var(--bg); }
+  main { max-width: 720px; margin: 0 auto; padding: 40px 20px 80px; }
+  h1 { font-size: 22px; font-weight: 600; margin: 0 0 4px; }
+  .sub { color: var(--muted); font-size: 14px; margin-bottom: 28px; }
+  .card { background:#fff; border:1px solid var(--line); border-radius:8px; padding:24px; margin-bottom:20px; }
+  .label { font-size:12px; letter-spacing:.08em; text-transform:uppercase; color:var(--muted); margin-bottom:6px; }
+  .part { margin-bottom:18px; }
+  .part p { margin:0; }
+  .meta { font-size:13px; color:var(--muted); margin-bottom:14px; }
+  input, textarea, button { font: inherit; }
+  input, textarea { width:100%; padding:10px 12px; border:1px solid var(--line); border-radius:6px; background:#fff; }
+  textarea { min-height:90px; resize:vertical; }
+  button { padding:10px 18px; border-radius:6px; border:1px solid var(--accent); background:var(--accent); color:#fff; cursor:pointer; }
+  button.secondary { background:#fff; color:var(--accent); }
+  button:disabled { opacity:.45; cursor:default; }
+  .row { display:flex; gap:10px; align-items:center; margin-top:12px; }
+  .error { color:#8a2a1f; font-size:14px; margin-top:10px; }
+  .ok { color:var(--accent); font-size:14px; margin-top:10px; }
+  .rule { font-size:13px; color:var(--muted); border-left:3px solid var(--line); padding-left:12px; margin:18px 0; }
+  .hidden { display:none; }
+  .tag { display:inline-block; font-size:12px; color:var(--muted); border:1px solid var(--line); border-radius:99px; padding:2px 10px; }
+</style>
+</head>
+<body>
+<main>
+  <h1>VirtuOS reviewer</h1>
+  <div class="sub">One entry, one virtue at a time. Your answer is a label, not an approval.</div>
+
+  <section id="signin" class="card">
+    <div class="label">Sign in</div>
+    <p class="meta">Use the email and password you were given. Nothing is stored on this page.</p>
+    <input id="email" type="email" placeholder="email" autocomplete="username">
+    <div style="height:10px"></div>
+    <input id="password" type="password" placeholder="password" autocomplete="current-password">
+    <div class="row"><button id="signinBtn">Sign in</button></div>
+    <div id="signinMsg" class="error"></div>
+  </section>
+
+  <section id="queue" class="hidden">
+    <div class="card" id="entryCard">
+      <div class="meta" id="entryMeta"></div>
+      <div class="part"><div class="label">Situation</div><p id="situation"></p></div>
+      <div class="part"><div class="label">What the wise person did or said</div><p id="wise"></p></div>
+      <div class="part"><div class="label">Why it worked</div><p id="why"></p></div>
+      <div class="part"><div class="label">The tempting wrong answer</div><p id="tempting"></p></div>
+    </div>
+
+    <div class="card">
+      <div class="label">Your judgment</div>
+      <p style="margin:0 0 8px" id="prompt"></p>
+      <div class="rule">
+        <strong>V1 — the lesson test.</strong> The virtue must be the lesson, not merely
+        present. Remove every other virtue: is the response still intelligible as an
+        instance of this one?<br><br>
+        <strong>V2 — the contrast test.</strong> The tempting wrong answer must be the
+        opposite of the same virtue.<br><br>
+        Worked examples: Luke 6:31 counts for reciprocity, not mercy — the lesson is the
+        Golden Rule. The Lion and the Mouse counts for gratitude, not mercy — the lesson
+        is that the small can repay the great.
+      </div>
+      <textarea id="notes" placeholder="If you disagree, say why. Required when disagreeing."></textarea>
+      <div class="row">
+        <button id="agreeBtn">Agree</button>
+        <button id="disagreeBtn" class="secondary">Disagree</button>
+      </div>
+      <div id="msg" class="error"></div>
+    </div>
+
+    <div class="card hidden" id="doneCard">
+      <div class="label">Queue empty</div>
+      <p>No entries left for you to label. Thank you.</p>
+    </div>
+  </section>
+</main>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
+<script>
+// Fill these two from the project settings. The publishable key is public.
+const SUPABASE_URL = "https://tgfbsplvimtzoxtffkpx.supabase.co";
+const SUPABASE_KEY = "sb_publishable_o0cVWcYynklEDtSgECbW4Q_2RCg8Y1O";
+
+const db = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+let session = null, labelerId = null, queue = [], current = null;
+
+const $ = (id) => document.getElementById(id);
+const show = (id) => $(id).classList.remove("hidden");
+const hide = (id) => $(id).classList.add("hidden");
+
+$("signinBtn").onclick = async () => {
+  $("signinMsg").textContent = "";
+  const { data, error } = await db.auth.signInWithPassword({
+    email: $("email").value.trim(),
+    password: $("password").value,
+  });
+  if (error) { $("signinMsg").textContent = error.message; return; }
+  session = data.session;
+  await start();
+};
+
+async function start() {
+  const { data: me, error } = await db.from("labelers")
+    .select("id, role, tradition_ids").eq("user_id", session.user.id).maybeSingle();
+  if (error || !me) {
+    $("signinMsg").textContent = "No labeler record for this account. Ask the curator to assign one.";
+    return;
+  }
+  if (me.role !== "reviewer_virtue") {
+    $("signinMsg").textContent = `This account has role ${me.role}, not reviewer_virtue.`;
+    return;
+  }
+  labelerId = me.id;
+  hide("signin"); show("queue");
+  await loadQueue();
+}
+
+async function loadQueue() {
+  // The server decides eligibility: strength 3, not retired, not yours,
+  // outside your lineage, not already labeled by you.
+  const { data, error } = await db.rpc("reviewer_queue");
+  if (error) { $("signinMsg").textContent = error.message; return; }
+  queue = data ?? [];
+  next();
+}
+
+function next() {
+  current = queue.shift();
+  if (!current) { hide("entryCard"); hide("msg"); show("doneCard"); return; }
+  render(current);
+}
+
+async function render(pair) {
+  const { data: e } = await db.from("entries")
+    .select("situation, wise_response, why_it_worked, tempting_wrong_answer, sources(title, citation, original_language, layer)")
+    .eq("id", pair.entry_id).single();
+  const { data: v } = await db.from("virtues").select("name").eq("id", pair.virtue_id).single();
+  if (!e || !v) { next(); return; }
+
+  // Blind: no tradition, no status, no other virtues, no existing labels.
+  $("entryMeta").innerHTML = `<span class="tag">${e.sources?.layer ?? ""}</span>
+    <span class="tag">${e.sources?.original_language ?? "language unrecorded"}</span><br><br>
+    ${e.sources?.title ?? ""}<br><span style="font-size:12px">${e.sources?.citation ?? ""}</span>`;
+  $("situation").textContent = e.situation;
+  $("wise").textContent = e.wise_response;
+  $("why").textContent = e.why_it_worked;
+  $("tempting").textContent = e.tempting_wrong_answer ?? "";
+  $("prompt").textContent = `Does this entry teach ${v.name} as its lesson (V1), with the tempting wrong answer as its opposite (V2)?`;
+  $("notes").value = "";
+  $("msg").textContent = "";
+  hide("doneCard");
+}
+
+async function cast(agrees) {
+  $("msg").textContent = "";
+  const notes = $("notes").value.trim();
+  if (!agrees && !notes) { $("msg").textContent = "A disagreement needs a reason."; return; }
+  $("agreeBtn").disabled = $("disagreeBtn").disabled = true;
+  const { data, error } = await db.rpc("cast_label", {
+    p_entry: current.entry_id,
+    p_virtue: current.virtue_id,
+    p_agrees: agrees,
+    p_notes: notes || null,
+  });
+  $("agreeBtn").disabled = $("disagreeBtn").disabled = false;
+  if (error) { $("msg").textContent = error.message; return; }
+  $("msg").className = "ok";
+  $("msg").textContent = data === "outside"
+    ? "Recorded. You are outside this entry's lineage, so it counts."
+    : "Recorded. You share a lineage with this entry, so it is stored but does not count.";
+  setTimeout(next, 900);
+}
+
+$("agreeBtn").onclick = () => cast(true);
+$("disagreeBtn").onclick = () => cast(false);
+</script>
+</body>
+</html>

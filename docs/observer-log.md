@@ -80,3 +80,13 @@ Discrepancy:
   - none
 Escalation to human:
   - Recruit the first `reviewer_virtue`. `scripts/gate-b.mjs` is the reference implementation of the onboarding path.
+
+## 2026-11-08 | Reviewer client
+Builder claim:
+  - `reviewer_queue()` added: strength-3 pairs eligible for the calling `reviewer_virtue`, filtered server-side for retired entries, entries authored by the reviewer, entries where any of the reviewer's roots matches the entry root, and pairs already labeled by them.
+  - `reviewer.html`: single-file client. Signs in with the publishable key, calls `reviewer_queue()` then `cast_label()`. The client is sent only layer, language, source title and citation, the four parts, and the virtue prompt. Tradition, root, status, strength and existing labels are never sent.
+  - Tested with a temporary reviewer. Rabbinic: 1,237 eligible pairs. Switched to Christian: the Christian Luke entry disappeared (0 visible), 1,232 total. Test rows removed.
+Discrepancy:
+  - none
+Escalation to human:
+  - `reviewer.html` needs `SUPABASE_KEY` filled with the publishable key before it can be used.
