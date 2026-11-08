@@ -52,8 +52,8 @@ const [entries, sources, traditions, virtues, entryVirtues, labels, labelers, vi
     pull("traditions", "id,parent_id"),
     pull("virtues", "id,name"),
     pull("entry_virtues", "entry_id,virtue_id"),
-    pull("labels", "entry_id,labeler_id,virtue_id,agrees"),
-    pull("labelers", "id,tradition_id"),
+    pull("labels", "entry_id,labeler_id,virtue_id,agrees,independence"),
+    pull("labelers", "id,tradition_ids"),
     pull("virtue_reach", "virtue_id,virtue,traditions_reached,reviewed_entries,in_shared_core"),
   ]);
 
@@ -100,11 +100,12 @@ for (const v of virtues) {
 
     for (const l of labelsFor.get(`${e.id}|${v.id}`) ?? []) {
       if (!l.agrees) continue;
+      if (l.independence !== "outside") continue;
       const labeler = labelerById.get(l.labeler_id);
-      if (!labeler?.tradition_id) continue;
+      const reviewerRoots = (labeler?.tradition_ids ?? []).map(rootOf).filter(Boolean);
+      if (reviewerRoots.length === 0) continue;
       if (e.created_by && l.labeler_id === e.created_by) continue;
-      const reviewerRoot = rootOf(labeler.tradition_id);
-      if (!reviewerRoot || reviewerRoot === entryRoot) continue;
+      if (reviewerRoots.includes(entryRoot)) continue;
       roots.add(entryRoot);
       entriesCounted.add(e.id);
     }
