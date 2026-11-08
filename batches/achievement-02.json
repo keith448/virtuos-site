@@ -1,0 +1,263 @@
+[
+  {
+    "source": {
+      "external_id": "ach-viesturs-annapurna",
+      "title": "Ed Viesturs, Annapurna",
+      "layer": "achievement",
+      "tradition": "United States",
+      "date_or_era": "1992-2005",
+      "author": null,
+      "rights_status": "own_summary",
+      "citation": "Ed Viesturs, Annapurna attempts; first American to climb all fourteen 8000m peaks without supplemental oxygen, 2005"
+    },
+    "title": "Turning back within sight of the summit",
+    "situation": "A mountaineer is high on Annapurna, close enough to the summit to see it, and the conditions are turning.",
+    "wise_response": "He turns around. He returns years later and finishes the climb on a day the mountain allows it.",
+    "why_it_worked": "He had decided in advance that the summit was optional and the descent was not, so the decision was already made when it got hard. He was not choosing between courage and fear; he was keeping a promise to himself.",
+    "tempting_wrong_answer": "Push for the top because the summit is right there and the effort is already spent.",
+    "virtues": [
+      { "name": "prudence", "strength": 3 },
+      { "name": "humility", "strength": 3 },
+      { "name": "self-control", "strength": 2 }
+    ],
+    "narrative_form": "procedural",
+    "agent_unit": "individual",
+    "beneficiary_unit": "family",
+    "translation_notes": "Own summary of a documented event. No copyrighted text reproduced."
+  },
+  {
+    "source": {
+      "external_id": "ach-costa-rica-army",
+      "title": "Costa Rica abolishes its army",
+      "layer": "achievement",
+      "tradition": "Costa Rican",
+      "date_or_era": "1948",
+      "author": null,
+      "rights_status": "own_summary",
+      "citation": "Costa Rica, 1948 constitution; army abolished after the civil war"
+    },
+    "title": "A country that gave up its army",
+    "situation": "After a civil war, Costa Rica's provisional leader holds the army that won. The country is poor and the region is full of military governments.",
+    "wise_response": "He abolishes the army and writes the decision into the constitution. The money goes to schools, clinics and roads instead.",
+    "why_it_worked": "It removed the instrument that had produced the war, rather than promising to use it better. The saving was visible within a generation.",
+    "tempting_wrong_answer": "Keep the army to protect the new government, and promise reform later.",
+    "virtues": [
+      { "name": "prudence", "strength": 3 },
+      { "name": "justice", "strength": 2 },
+      { "name": "courage", "strength": 2 }
+    ],
+    "narrative_form": "institutional",
+    "agent_unit": "institution",
+    "beneficiary_unit": "future_generations",
+    "translation_notes": "Own summary of a documented event. No copyrighted text reproduced."
+  },
+  {
+    "source": {
+      "external_id": "ach-kamikatsu-waste",
+      "title": "Kamikatsu zero-waste town",
+      "layer": "achievement",
+      "tradition": "Japanese",
+      "date_or_era": "2003 onward",
+      "author": null,
+      "rights_status": "own_summary",
+      "citation": "Kamikatsu, Tokushima Prefecture; zero-waste declaration 2003"
+    },
+    "title": "Forty-five categories of rubbish",
+    "situation": "A small mountain town loses its landfill and incinerator. The cheapest option is to truck waste out of the valley and forget it.",
+    "wise_response": "The town declares a zero-waste goal and asks every household to sort rubbish into forty-five categories, wash it, and bring it to a single collection point. They keep doing it for twenty years.",
+    "why_it_worked": "The task was small enough for each household to do and visible enough that everyone could see whether their neighbours did it. Patience became a civic habit rather than a policy.",
+    "tempting_wrong_answer": "Pay to export the waste and keep the inconvenience out of sight.",
+    "virtues": [
+      { "name": "patience", "strength": 3 },
+      { "name": "cooperation", "strength": 3 },
+      { "name": "contentment", "strength": 2 }
+    ],
+    "narrative_form": "cyclic",
+    "agent_unit": "community",
+    "beneficiary_unit": "future_generations",
+    "translation_notes": "Own summary of a documented event. No copyrighted text reproduced."
+  },
+  {
+    "source": {
+      "external_id": "ach-chilean-miners-2010",
+      "title": "The Copiapo miners, 2010",
+      "layer": "achievement",
+      "tradition": "Chilean",
+      "date_or_era": "2010",
+      "author": null,
+      "rights_status": "own_summary",
+      "citation": "Copiapo mining accident, 2010; 33 men, 69 days underground"
+    },
+    "title": "Sixty-nine days underground",
+    "situation": "Thirty-three miners are trapped 700 metres underground after a collapse. Nobody above ground knows whether they are alive.",
+    "wise_response": "Underground, they ration food, organize shifts, keep a daily routine and assign one man to keep morale. Above ground, the rescue team keeps drilling holes that miss.",
+    "why_it_worked": "They made the group the unit of survival. Rationing and routine replaced individual endurance, so the weakest did not set the pace and nobody had to be a hero alone.",
+    "tempting_wrong_answer": "Let the strongest take what they need and hope the drilling finds you.",
+    "virtues": [
+      { "name": "patience", "strength": 3 },
+      { "name": "cooperation", "strength": 3 },
+      { "name": "perseverance", "strength": 3 }
+    ],
+    "narrative_form": "procedural",
+    "agent_unit": "team",
+    "beneficiary_unit": "community",
+    "translation_notes": "Own summary of a documented event. No copyrighted text reproduced."
+  },
+  {
+    "source": {
+      "external_id": "ach-bhutan-gnh",
+      "title": "Bhutan and Gross National Happiness",
+      "layer": "achievement",
+      "tradition": "Bhutanese",
+      "date_or_era": "1972 onward",
+      "author": null,
+      "rights_status": "own_summary",
+      "citation": "Bhutan, Gross National Happiness, declared 1972; constitutional principle 2008"
+    },
+    "title": "Measuring the wrong thing on purpose",
+    "situation": "A small Himalayan kingdom opens to the world and has to choose what development means before it has much of it.",
+    "wise_response": "The king declares that Gross National Happiness matters more than Gross National Product, and the country builds its policy around that claim, including forest cover, culture and time use.",
+    "why_it_worked": "It changed the scoreboard before the incentives hardened. What counted as success was decided publicly, so later governments had to argue against a stated standard rather than quietly ignore one.",
+    "tempting_wrong_answer": "Maximize growth first and worry about wellbeing once the country is rich.",
+    "virtues": [
+      { "name": "contentment", "strength": 3 },
+      { "name": "prudence", "strength": 2 },
+      { "name": "justice", "strength": 2 }
+    ],
+    "narrative_form": "institutional",
+    "agent_unit": "institution",
+    "beneficiary_unit": "future_generations",
+    "translation_notes": "Own summary of a documented event. No copyrighted text reproduced."
+  },
+  {
+    "source": {
+      "external_id": "ach-sa-trc",
+      "title": "South Africa's Truth and Reconciliation Commission",
+      "layer": "achievement",
+      "tradition": "South African",
+      "date_or_era": "1996-1998",
+      "author": null,
+      "rights_status": "own_summary",
+      "citation": "Truth and Reconciliation Commission, 1996-1998, chaired by Desmond Tutu"
+    },
+    "title": "Amnesty for the truth",
+    "situation": "After apartheid, the new government has to decide what to do with thousands of perpetrators and a country full of unresolved crimes.",
+    "wise_response": "The commission offers amnesty to those who confess fully and can show a political motive, and it hears victims in public. Those who do not confess remain liable.",
+    "why_it_worked": "It traded punishment for information without trading away the truth. Mercy was conditional and public, so it did not require anyone to pretend nothing had happened.",
+    "tempting_wrong_answer": "Prosecute everyone and risk a long, unstable reckoning, or grant a blanket amnesty and move on.",
+    "virtues": [
+      { "name": "mercy", "strength": 3 },
+      { "name": "forgiveness", "strength": 3 },
+      { "name": "justice", "strength": 2 },
+      { "name": "courage", "strength": 2 }
+    ],
+    "narrative_form": "institutional",
+    "agent_unit": "institution",
+    "beneficiary_unit": "community",
+    "translation_notes": "Own summary of a documented event. No copyrighted text reproduced."
+  },
+  {
+    "source": {
+      "external_id": "ach-kindertransport",
+      "title": "The Kindertransport",
+      "layer": "achievement",
+      "tradition": "British",
+      "date_or_era": "1938-1939",
+      "author": null,
+      "rights_status": "own_summary",
+      "citation": "Kindertransport, 1938-1939; roughly 10,000 children brought to Britain"
+    },
+    "title": "Ten thousand children",
+    "situation": "After Kristallnacht, Jewish children in Germany and occupied territory are in danger, and few countries will take them.",
+    "wise_response": "British families, churches and charities arrange visas, foster homes and guarantees, and bring roughly ten thousand children out without their parents.",
+    "why_it_worked": "It was organized as a hundred small household decisions rather than one national one, so it could proceed while governments hesitated.",
+    "tempting_wrong_answer": "Wait for an international agreement, or take only the children who are easiest to place.",
+    "virtues": [
+      { "name": "mercy", "strength": 3 },
+      { "name": "care for the stranger", "strength": 3 },
+      { "name": "courage", "strength": 2 }
+    ],
+    "narrative_form": "institutional",
+    "agent_unit": "institution",
+    "beneficiary_unit": "strangers",
+    "translation_notes": "Own summary of a documented event. No copyrighted text reproduced."
+  },
+  {
+    "source": {
+      "external_id": "ach-mondragon",
+      "title": "The Mondragon cooperatives",
+      "layer": "achievement",
+      "tradition": "Basque",
+      "date_or_era": "1956 onward",
+      "author": null,
+      "rights_status": "own_summary",
+      "citation": "Mondragon Corporation, founded 1956 in the Basque Country"
+    },
+    "title": "A factory where the workers own the pay gap",
+    "situation": "A Basque priest arrives in a poor industrial town after the civil war and finds workers with no capital and no say in the factories that employ them.",
+    "wise_response": "He starts a technical school, then a cooperative in which workers own the firm, elect the managers and set their own pay ratios. The model is copied into dozens of businesses.",
+    "why_it_worked": "Ownership made reciprocity structural rather than aspirational. Because the pay ratio was voted on, restraint was a decision the members made together, not a favour granted by an owner.",
+    "tempting_wrong_answer": "Attract an outside investor and accept whatever terms keep the factory open.",
+    "virtues": [
+      { "name": "reciprocity", "strength": 3 },
+      { "name": "cooperation", "strength": 3 },
+      { "name": "justice", "strength": 2 }
+    ],
+    "narrative_form": "institutional",
+    "agent_unit": "institution",
+    "beneficiary_unit": "community",
+    "translation_notes": "Own summary of a documented event. No copyrighted text reproduced."
+  },
+  {
+    "source": {
+      "external_id": "ach-grameen",
+      "title": "Grameen Bank and microcredit",
+      "layer": "achievement",
+      "tradition": "Bangladeshi",
+      "date_or_era": "1983 onward",
+      "author": null,
+      "rights_status": "own_summary",
+      "citation": "Grameen Bank, founded 1983, Dhaka; Muhammad Yunus, Nobel Peace Prize 2006"
+    },
+    "title": "Lending to people with nothing",
+    "situation": "Villagers in Bangladesh borrow from moneylenders at rates that keep them poor. Banks will not lend to them because they have no collateral.",
+    "wise_response": "The bank lends small sums to groups of women who guarantee each other, with repayment scheduled weekly and no collateral.",
+    "why_it_worked": "The group replaced the collateral. Reciprocity did the work that assets usually do, and the weekly meeting made repayment a shared obligation rather than a private risk.",
+    "tempting_wrong_answer": "Require collateral, or lend to the village headman and let him decide who deserves it.",
+    "virtues": [
+      { "name": "reciprocity", "strength": 3 },
+      { "name": "cooperation", "strength": 3 },
+      { "name": "justice", "strength": 2 }
+    ],
+    "narrative_form": "institutional",
+    "agent_unit": "institution",
+    "beneficiary_unit": "community",
+    "translation_notes": "Own summary of a documented event. No copyrighted text reproduced."
+  },
+  {
+    "source": {
+      "external_id": "ach-subak-bali",
+      "title": "The Balinese subak",
+      "layer": "achievement",
+      "tradition": "Balinese",
+      "date_or_era": "c. 9th century onward",
+      "author": null,
+      "rights_status": "own_summary",
+      "citation": "Subak irrigation system, Bali; UNESCO World Heritage, 2012"
+    },
+    "title": "Water shared by a temple, not a landlord",
+    "situation": "Rice terraces on volcanic slopes need water in sequence. One farmer upstream can take everything; downstream farmers can do nothing about it.",
+    "wise_response": "Farmers who share a water source form a subak, which allocates water by rule, maintains the channels together, and settles disputes at a temple rather than in a court.",
+    "why_it_worked": "The water was treated as a shared obligation rather than a property right, and the temple gave the rule an authority no single farmer could claim. Patience and turn-taking were enforceable because everyone could see the schedule.",
+    "tempting_wrong_answer": "Take as much water as the upstream position allows and sell the surplus.",
+    "virtues": [
+      { "name": "reciprocity", "strength": 3 },
+      { "name": "cooperation", "strength": 3 },
+      { "name": "patience", "strength": 2 }
+    ],
+    "narrative_form": "cyclic",
+    "agent_unit": "community",
+    "beneficiary_unit": "community",
+    "translation_notes": "Own summary of a documented event. No copyrighted text reproduced."
+  }
+]

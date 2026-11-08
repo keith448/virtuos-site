@@ -25,9 +25,10 @@ Full design: [master-plan.md](./master-plan.md).
 
 ## State, 2026-11-08
 
-- 1,641 entries: 11 approved, 1,630 draft, 0 in review. 1,630 are AI drafts.
-- All five layers populated. Film 12, achievement 10. Every virtue now appears in
-  at least one of the two, though neither is deep.
+- 1,651 entries: 11 approved, 1,640 draft, 0 in review. 1,640 are AI drafts.
+- All five layers populated. Film 12, achievement 20. Achievement now carries
+  patience, contentment, prudence, mercy and reciprocity; six virtues still absent
+  there: compassion, gratitude, honesty, keeping promises, loyalty, respect for elders.
 - **Shared core: empty.** Three virtues have raw breadth — mercy (6 traditions),
   reciprocity (6), gratitude (5) — but none has an external review, so none counts.
 - 20 virtues, 47 traditions, 81 sources, 25 parallels.
