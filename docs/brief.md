@@ -30,9 +30,9 @@ Full design: [master-plan.md](./master-plan.md).
 - All five layers populated. Film 12, achievement 20. Achievement now carries
   patience, contentment, prudence, mercy and reciprocity; six virtues still absent
   there: compassion, gratitude, honesty, keeping promises, loyalty, respect for elders.
-- **Shared core: empty.** Under the codebook's strength-3 rule, only reciprocity
-  reaches five lineages on primary tags (6). Mercy falls to 3 and gratitude to 4 —
-  both were carried mostly by secondary tags.
+- **Shared core: empty.** Under the codebook's strength-3 rule and tree v1, only
+  reciprocity reaches five lineages (6). Gratitude falls to 3 and mercy to 2 once
+  merged lineages are counted once.
 - 20 virtues, 47 traditions, 81 sources, 25 parallels.
 - 0 auth users. `labels` is empty. `scenarios` and `model_runs` are empty.
 
