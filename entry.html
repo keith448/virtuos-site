@@ -70,6 +70,14 @@ document.getElementById("go").onclick = async () => {
   id ? renderEntry() : renderList();
 };
 
+(async () => {
+  const { data } = await db.auth.getSession();
+  if (data?.session) {
+    document.getElementById("signin").hidden = true;
+    id ? renderEntry() : renderList();
+  }
+})();
+
 function section(head, body, note) {
   return `<div class="row"><div><div class="head">${head}</div>${body}</div><aside>${note || ""}</aside></div>`;
 }

@@ -8,6 +8,7 @@
 //   node scripts/add-reviewer.mjs --email a@b.c --role reviewer_translation --languages "Sanskrit,Pali"
 //   node scripts/add-reviewer.mjs --list
 //   node scripts/add-reviewer.mjs --delete --email a@b.c
+//   node scripts/add-reviewer.mjs --reset-password --email a@b.c
 
 import { readFileSync } from "node:fs";
 import { randomBytes } from "node:crypto";
@@ -107,8 +108,35 @@ const role = value("--role") ?? "reviewer_virtue";
 const password = value("--password") ?? randomBytes(12).toString("base64url") + "!A1";
 const languageList = (value("--languages") ?? "").split(",").map((s) => s.trim()).filter(Boolean);
 
-if (!email || !name) {
+if (!email) {
   console.error('Usage: node scripts/add-reviewer.mjs --email x --name "Name" [--role reviewer_virtue] [--tradition "Name" ...] [--languages "Sanskrit,Pali"]');
+  process.exit(1);
+}
+
+// --- reset password --------------------------------------------------------
+if (flag("--reset-password")) {
+  const u = await findUser(email);
+  if (!u) {
+    console.error(`No auth user for ${email}. Run without --reset-password to create one.`);
+    process.exit(1);
+  }
+  const r = await fetch(`${URL_BASE}/auth/v1/admin/users/${u.id}`, {
+    method: "PUT",
+    headers: admin,
+    body: JSON.stringify({ password }),
+  });
+  if (!r.ok) {
+    console.error("Password reset failed:", await r.text());
+    process.exit(1);
+  }
+  console.log(`Password reset for ${email}`);
+  console.log(`  user     ${u.id}`);
+  console.log(`  password ${password}   ← shown once`);
+  process.exit(0);
+}
+
+if (!name) {
+  console.error("--name is required to create or update a labeler.");
   process.exit(1);
 }
 

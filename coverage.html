@@ -85,6 +85,15 @@ document.getElementById("go").onclick = async () => {
   render();
 };
 
+(async () => {
+  const { data } = await db.auth.getSession();
+  if (data?.session) {
+    document.getElementById("signin").hidden = true;
+    document.getElementById("grid").hidden = false;
+    render();
+  }
+})();
+
 async function render() {
   const [cells, roots, virtues, reach] = await Promise.all([
     db.from("coverage_cells").select("*"),
