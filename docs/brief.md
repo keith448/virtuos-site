@@ -26,9 +26,11 @@ Full design: [master-plan.md](./master-plan.md).
 ## State, 2026-11-08
 
 - 1,523 live entries: 11 approved, 1,512 draft, 0 in review. 147 retired.
-- Provenance: 985 of 1,523 live entries carry original-language text (65%). Arabic
-  700/700, Classical Chinese 202/202, Coptic 23/23, Hebrew 14/14, Sanskrit 11/11,
-  Pali 10/10 — but Greek 1/192.
+- Provenance: 985 entries hold their original-language text; **538 are english_only**
+  — drafted from a translation, no original held. `entry_provenance` reports this per
+  entry. Held: Arabic 700/700, Classical Chinese 202/202, Coptic 23/23, Hebrew 14/14,
+  Sanskrit 11/11, Pali 10/10. Not held: Greek 1/192, German 0/37, Russian 0/36,
+  English 0/27, Georgian 0/23, Punjabi 0/23, Inuit 0/22, Tamil 0/19.
 - Sanskrit: 11 entries, all carrying original text and a named edition; none verified.
 - Pali: 10 Dhammapada entries carry the Pali and Sujato's CC0 translation. The 147
   older Jataka entries were retired as unprovenanced and are excluded from counts.
