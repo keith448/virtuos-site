@@ -61,3 +61,12 @@ Discrepancy:
   - none
 Escalation to human:
   - none
+
+## 2026-11-08 | Config + prompt fix
+Builder claim:
+  - `opencode.json` model ids corrected and verified in `opencode debug config`: builder `opencode-go/deepseek-v4.1-flash`, translator `opencode/claude-opus-5-5` (session B overrides with `opencode/gpt-6.1-sol`), observer `opencode/crouton-alpha-free`. All three resolve.
+  - `translator-batch-prompt.md`: pilot models named concretely; the "trigger" reference corrected to the in-function flip.
+Discrepancy:
+  - none
+Escalation to human:
+  - none
