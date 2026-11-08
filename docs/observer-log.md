@@ -50,3 +50,14 @@ Discrepancy (in observer-authored files):
 Escalation to human:
   - institutional-charter.md: CC BY vs CC BY-SA conflict for the 202 Analects entries. Decision required before v1.0.
   - A second model family is required to run the translator rotation test.
+
+## 2026-11-08 | Decision
+Builder claim:
+  - Founder approved **CC BY-SA 4.0** for the publishable data release; code remains Apache-2.0.
+  - Rationale: BY-SA is the only single licence compatible with public domain, CC0, CC BY and the CC BY-SA Wikisource transcription. Commercial use remains permitted; share-alike supports the charter's capture-resistance clause.
+  - `research_only` (GRETIL CC BY-NC-SA, 7 sources) and `unclear` (6 sources) stay out of any publishable release, enforced by `publishable_entries`.
+  - Charter amended at the spine clause with the decision and date.
+Discrepancy:
+  - none
+Escalation to human:
+  - none
