@@ -1,3 +1,7 @@
+# Personal working chat, kept local. Do not publish.
+docs/claude-chat.md
+docs/conversations.json
+
 node_modules/
 .next/
 .vercel/
