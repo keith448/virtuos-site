@@ -7,8 +7,8 @@ Start here. One page on what exists, what's true, and what's next.
 A dataset of how good people act, in five layers — scripture, ancient fables, folk
 tales, hero films, real achievement. Every entry has the same four parts: situation,
 wise response, why it worked, tempting wrong answer. A virtue joins the **shared
-core** only when at least five traditions reached it independently, each attested by
-a reviewer from outside that tradition.
+core** only when at least five **lineages** reached it independently, each attested
+by a reviewer from outside that lineage.
 
 Full design: [master-plan.md](./master-plan.md).
 
@@ -52,6 +52,10 @@ Full design: [master-plan.md](./master-plan.md).
    `ai_*`). The master plan still lists the old columns.
 6. **Approval leaves no trace.** `status` has no author and no date. The label is
    now the evidence; `status` is only workflow.
+7. **Lineages exist but are unassigned.** `traditions.parent_id` builds the tree
+   and both views count distinct roots, but every value is null, so each tradition
+   is currently its own root. Assigning parents is editorial work that should be
+   done with reviewers from each lineage.
 
 ## Next
 
@@ -64,5 +68,6 @@ or stays empty, which is also an answer.
 - Is the output a published Hugging Face dataset, the review platform, or both?
 - `origin_tradition_id` is set on 0 entries today; it overrides the source's
   tradition in `virtue_reach`. If set carelessly, core membership moves.
-- Which traditions count as distinct? Two Christian sub-traditions are not two
-  traditions for the five-tradition test, and nothing in the schema says so.
+- Where do lineage boundaries fall? Coptic and Anglican are different communities
+  but one transmission. Gnostic material may deserve its own root. The mechanism
+  exists; the assignments don't.
