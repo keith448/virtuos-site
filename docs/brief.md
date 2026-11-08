@@ -25,8 +25,9 @@ Full design: [master-plan.md](./master-plan.md).
 
 ## State, 2026-11-08
 
-- 1,635 entries: 11 approved, 1,624 draft, 0 in review. 1,624 are AI drafts.
-- All five layers populated. Film 6, achievement 10, one entry per lineage in each.
+- 1,641 entries: 11 approved, 1,630 draft, 0 in review. 1,630 are AI drafts.
+- All five layers populated. Film 12, achievement 10. Every virtue now appears in
+  at least one of the two, though neither is deep.
 - **Shared core: empty.** Three virtues have raw breadth — mercy (6 traditions),
   reciprocity (6), gratitude (5) — but none has an external review, so none counts.
 - 20 virtues, 47 traditions, 81 sources, 25 parallels.
