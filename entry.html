@@ -13,6 +13,8 @@
   .kicker { font-variant:small-caps; letter-spacing:.08em; color:var(--muted); font-size:12px; }
   h1 { font-size:30px; font-weight:normal; line-height:1.2; margin:8px 0 6px; }
   .meta { color:var(--muted); font-size:13px; font-style:italic; }
+  .lede { max-width:64ch; color:#333; font-size:15px; margin:18px 0 26px; }
+  .lede p { margin:0 0 10px; }
   .row { display:grid; grid-template-columns: minmax(0,1fr) 250px; gap:56px;
          border-top:1px solid var(--rule); padding:20px 0 6px; }
   .row:first-of-type { border-top:1px solid var(--hair); }
@@ -42,6 +44,14 @@
 <main>
   <div class="kicker">VirtuOS</div>
   <div id="crumb" class="meta"></div>
+  <div class="lede">
+    <p>An entry records one situation, what a wise person did or said, why it worked, and the
+    tempting wrong answer. Entries come from scripture, fables, folk tales, films and real
+    achievement, and each one names its source.</p>
+    <p>The original text is stored with a named edition. The translation is either a published
+    one or an AI draft, and the state field says which. Verified means two readers of the
+    source language checked it. Nothing here is verified.</p>
+  </div>
   <section id="signin" style="margin-top:28px">
     <input id="email" type="email" placeholder="email">
     <input id="password" type="password" placeholder="password">

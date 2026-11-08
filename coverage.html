@@ -20,7 +20,9 @@
   body { margin:0; color:var(--ink); font:16px/1.55 Georgia, "Iowan Old Style", "Times New Roman", serif; }
   main { padding: 40px 28px 80px; max-width: 1100px; }
   h1 { font-size:20px; font-weight:normal; margin:0 0 2px; }
-  .sub { color:var(--muted); font-size:13px; font-style:italic; margin-bottom:28px; }
+  .sub { color:var(--muted); font-size:13px; font-style:italic; margin-bottom:22px; }
+  .lede { max-width:64ch; color:#333; font-size:15px; margin-bottom:28px; }
+  .lede p { margin:0 0 10px; }
   .wrap { overflow-x:auto; }
   table { border-collapse: collapse; font-variant-numeric: tabular-nums; }
   th, td { padding:5px 9px; font-size:13px; font-weight:normal; }
@@ -54,6 +56,13 @@
 <main>
   <h1>Coverage</h1>
   <div class="sub">Approved strength-3 entries, by lineage root. A virtue needs five roots, each attested from outside.</div>
+  <div class="lede">
+    <p>Rows are lineage roots. Coptic and Anglican sit under one root because they share a
+    transmission, so they count once. A number is how many approved entries from that root
+    teach the virtue. A blank cell has none.</p>
+    <p>The bottom row carries five marks per virtue, one for each lineage with a label from
+    outside. Five filled marks put the virtue in the shared core. Every mark is empty today.</p>
+  </div>
 
   <section id="signin" class="signin">
     <input id="email" type="email" placeholder="email">
