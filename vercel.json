@@ -7,7 +7,7 @@
   "cleanUrls": true,
   "headers": [
     {
-      "source": "/(reviewer|coverage)",
+      "source": "/(reviewer|coverage|applications)",
       "headers": [
         { "key": "X-Robots-Tag", "value": "noindex, nofollow" },
         { "key": "X-Frame-Options", "value": "DENY" },

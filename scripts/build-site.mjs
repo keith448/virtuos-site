@@ -11,7 +11,7 @@ import { resolve } from "node:path";
 const out = resolve("site");
 mkdirSync(out, { recursive: true });
 
-for (const f of ["reviewer.html", "coverage.html", "entry.html"]) {
+for (const f of ["reviewer.html", "coverage.html", "entry.html", "applications.html"]) {
   copyFileSync(resolve(f), resolve(out, f));
 }
 
@@ -35,6 +35,7 @@ a{color:#111;text-underline-offset:3px}.m{color:#6b6b6b;font-size:13px;font-styl
   <li><a href="reviewer.html">Review</a> — one entry, one virtue</li>
   <li><a href="coverage.html">Coverage</a> — approved entries by lineage root</li>
   <li><a href="entry.html">Entries</a> — read-only view</li>
+  <li><a href="applications.html">Applications</a> — curator only</li>
 </ul>
 </main>`,
 );

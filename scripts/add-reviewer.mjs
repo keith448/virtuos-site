@@ -189,6 +189,42 @@ if (!Array.isArray(rows) || !rows[0]?.id) {
   process.exit(1);
 }
 
+// Audit trail: every labeler should trace to an application and a decision.
+// The script bypasses the application form, so it writes both records itself.
+try {
+  const curators = await get("labelers?select=id&role=eq.curator&limit=1");
+  const curatorId = curators[0]?.id ?? null;
+  if (curatorId) {
+    await fetch(`${URL_BASE}/rest/v1/reviewer_applications?on_conflict=user_id`, {
+      method: "POST",
+      headers: { ...admin, Prefer: "resolution=ignore-duplicates,return=minimal" },
+      body: JSON.stringify([{
+        user_id: user.id,
+        email,
+        name,
+        tradition_ids: traditions.map((t) => t.id),
+        languages: languageList.length ? languageList : null,
+        note: `created via add-reviewer.mjs as ${role}`,
+      }]),
+    });
+    const apps = await get(`reviewer_applications?user_id=eq.${user.id}&select=id`);
+    if (apps[0]) {
+      await fetch(`${URL_BASE}/rest/v1/reviewer_decisions?on_conflict=application_id`, {
+        method: "POST",
+        headers: { ...admin, Prefer: "resolution=ignore-duplicates,return=minimal" },
+        body: JSON.stringify([{
+          application_id: apps[0].id,
+          decision: "approved",
+          decided_by: curatorId,
+          note: `created via add-reviewer.mjs as ${role}`,
+        }]),
+      });
+    }
+  }
+} catch (e) {
+  console.error(`warning: could not record the audit trail (${e.message})`);
+}
+
 console.log(`${created ? "Created" : "Updated"} ${email}`);
 console.log(`  user     ${user.id}`);
 console.log(`  labeler  ${rows[0].id}`);

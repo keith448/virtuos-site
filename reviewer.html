@@ -55,6 +55,28 @@
     <div id="signinMsg" class="err"></div>
   </section>
 
+  <section id="apply" hidden>
+    <div class="head">Apply to review</div>
+    <p class="meta">Signed in as <span id="applyEmail"></span>. A curator decides; access comes only after approval.</p>
+    <input id="applyName" placeholder="Your name">
+    <div style="height:8px"></div>
+    <div class="head" style="margin-top:10px">Traditions you can speak for</div>
+    <select id="applyTraditions" multiple size="8"></select>
+    <div style="height:8px"></div>
+    <input id="applyLanguages" placeholder="Languages you read, comma separated">
+    <div style="height:8px"></div>
+    <select id="applyDiscipline">
+      <option value="">discipline</option>
+      <option>scripture</option><option>folklore</option><option>film</option>
+      <option>sport_coaching</option><option>interfaith</option><option>anthropology</option>
+      <option>philosophy</option><option>other</option>
+    </select>
+    <div style="height:8px"></div>
+    <textarea id="applyNote" placeholder="Which traditions you can speak for, and why you should review them."></textarea>
+    <div class="row"><button id="applyBtn">Submit application</button></div>
+    <div id="applyMsg"></div>
+  </section>
+
   <section id="queue" hidden>
     <div class="meta" id="progress"></div>
     <div class="bar"><i id="barFill" style="width:0%"></i></div>
@@ -133,14 +155,43 @@ $("signinBtn").onclick = async () => {
   if (data?.session) { session = data.session; await start(); }
 })();
 
+async function showApply() {
+  hide("signin"); hide("queue"); hide("judgment"); hide("doneCard");
+  show("apply");
+  $("applyEmail").textContent = session.user.email;
+  if (!$("applyTraditions").options.length) {
+    const { data } = await db.from("traditions").select("id,name").order("name");
+    $("applyTraditions").innerHTML = (data || [])
+      .map((t) => `<option value="${t.id}">${esc(t.name)}</option>`).join("");
+  }
+}
+
+$("applyBtn").onclick = async () => {
+  $("applyMsg").textContent = "";
+  $("applyMsg").className = "";
+  const name = $("applyName").value.trim();
+  const traditions = [...$("applyTraditions").selectedOptions].map((o) => o.value);
+  if (!name) { $("applyMsg").className = "err"; $("applyMsg").textContent = "Your name is required."; return; }
+  if (!traditions.length) { $("applyMsg").className = "err"; $("applyMsg").textContent = "Select at least one tradition."; return; }
+  const languages = $("applyLanguages").value.split(",").map((s) => s.trim()).filter(Boolean);
+  const { error } = await db.rpc("apply_as_reviewer", {
+    p_name: name,
+    p_tradition_ids: traditions,
+    p_languages: languages.length ? languages : null,
+    p_discipline: $("applyDiscipline").value || null,
+    p_note: $("applyNote").value.trim() || null,
+  });
+  if (error) { $("applyMsg").className = "err"; $("applyMsg").textContent = error.message; return; }
+  $("applyMsg").className = "ok";
+  $("applyMsg").textContent = "Application submitted. You can review once a curator approves it.";
+  $("applyBtn").disabled = true;
+};
+
 async function start() {
   const { data: me, error } = await db.from("labelers")
     .select("id, role, tradition_ids").eq("user_id", session.user.id).maybeSingle();
   if (error || !me) {
-    $("signinMsg").innerHTML =
-      `Signed in as <b>${esc(session.user.email)}</b>, but no labeler record exists yet.<br>` +
-      `Ask the curator to run:<br><code>node scripts/add-reviewer.mjs --email ${esc(session.user.email)} ` +
-      `--name "…" --tradition "…"</code>`;
+    await showApply();
     return;
   }
   if (me.role !== "reviewer_virtue") {
