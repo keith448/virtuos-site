@@ -25,7 +25,7 @@ Full design: [master-plan.md](./master-plan.md).
 
 ## State, 2026-11-08
 
-- 1,523 live entries: 11 approved, 1,512 draft, 0 in review. 147 retired.
+- 1,523 live entries: 10 approved, 1,513 draft, 0 in review. 147 retired.
 - Provenance: 985 entries hold their original-language text; **538 are english_only**
   — drafted from a translation, no original held. `entry_provenance` reports this per
   entry. Held: Arabic 700/700, Classical Chinese 202/202, Coptic 23/23, Hebrew 14/14,
@@ -40,15 +40,15 @@ Full design: [master-plan.md](./master-plan.md).
 - **Shared core: empty.** Under the codebook's strength-3 rule and tree v1, only
   reciprocity reaches five lineages (6). Gratitude falls to 3. Mercy falls to
   **0** — every current mercy entry is really about repayment or gratitude.
-- 20 virtues, 47 traditions, 81 sources, 25 parallels.
+- 20 virtues, 73 traditions (57 roots), 132 sources, 21 parallels.
 - 0 auth users. `labels` is empty. `scenarios` and `model_runs` are empty.
 
 ## What's true that the plan doesn't say
 
 1. **The core is empty by design, not by accident.** `virtue_reach` now requires an
-   agreeing label from a labeler whose tradition differs from the entry's, and who
-   is not the entry's author. `virtue_reach_raw` keeps the old unreviewed count.
-2. **Raw reach overstates.** The three "convergences" rest on 11 stories, six of
+   agreeing label from a labeler **none of whose roots** matches the entry's root,
+   and who is not the entry's author. `virtue_reach_raw` keeps the unreviewed count.
+2. **Raw reach overstates.** The "convergences" rest on 10 approved stories, six of
    them counted twice. Every mercy entry is also a gratitude or reciprocity entry
    at equal or higher strength — so mercy is a second reading of stories about
    repayment, not independent evidence.
@@ -64,22 +64,23 @@ Full design: [master-plan.md](./master-plan.md).
    `ai_*`). The master plan still lists the old columns.
 6. **Approval leaves no trace.** `status` has no author and no date. The label is
    now the evidence; `status` is only workflow.
-7. **Lineages exist but are unassigned.** `traditions.parent_id` builds the tree
-   and both views count distinct roots, but every value is null, so each tradition
-   is currently its own root. Assigning parents is editorial work that should be
-   done with reviewers from each lineage.
+7. **Lineages are assigned, provisionally.** `tree_v1` merged eight groups and left
+   the rest as separate roots: 73 tradition rows, 57 roots. The merges are documented
+   in `docs/tree-v1.md`; contested nodes are listed there and still need reviewers
+   from each side.
 
 ## Next
 
-Record reviews, not approvals. Before any review can count, the labeler row needs
-`user_id` (claimed after sign-in) and `tradition_id`. Then the core fills honestly —
-or stays empty, which is also an answer.
+Record reviews, not approvals. The reviewer queues are deployed: `cast_label`,
+`attest_translation`, `cast_adjudication`, with direct writes revoked. Before any
+review can count, a labeler needs `user_id` after sign-in, `tradition_ids`, and a
+queue role. Then the core fills honestly — or stays empty, which is also an answer.
 
 ## Open questions
 
 - Is the output a published Hugging Face dataset, the review platform, or both?
 - `origin_tradition_id` is set on 0 entries today; it overrides the source's
   tradition in `virtue_reach`. If set carelessly, core membership moves.
-- Where do lineage boundaries fall? Coptic and Anglican are different communities
-  but one transmission. Gnostic material may deserve its own root. The mechanism
-  exists; the assignments don't.
+- Which `tree_v1` merges survive review? European folk traditions, the West African
+  collections and the Gnostic root are deliberately unmerged. Each needs two
+  reviewers, one from each side.
