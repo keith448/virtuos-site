@@ -25,8 +25,10 @@ Full design: [master-plan.md](./master-plan.md).
 
 ## State, 2026-11-08
 
-- 1,657 entries: 11 approved, 1,646 draft, 0 in review. 1,646 are AI drafts.
-- Sanskrit: 8 entries, all carrying original text and a named edition; none verified.
+- 1,660 entries: 11 approved, 1,649 draft, 0 in review. 1,649 are AI drafts.
+- Provenance: 775 of 1,660 entries carry original-language text (47%). Arabic 700/700,
+  Coptic 23/23, Hebrew 14/14, Sanskrit 11/11 — but Greek 1/192 and Pali 0/147.
+- Sanskrit: 11 entries, all carrying original text and a named edition; none verified.
 - All five layers populated. Film 12, achievement 20. Achievement now carries
   patience, contentment, prudence, mercy and reciprocity; six virtues still absent
   there: compassion, gratitude, honesty, keeping promises, loyalty, respect for elders.
