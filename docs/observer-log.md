@@ -70,3 +70,13 @@ Discrepancy:
   - none
 Escalation to human:
   - none
+
+## 2026-11-08 | Gate (b) exercise
+Builder claim:
+  - Created a real auth user through the admin API, signed in with email and password using the publishable key, and called `rpc/cast_label` with that user's JWT. No service key on the label call.
+  - Result: HTTP 200, `outside`. Labeler row role `reviewer_virtue`, `tradition_ids=[Rabbinic Judaism]`; label `independence=outside`; `virtue_reach` reciprocity 1 tradition / 1 reviewed entry.
+  - The synthetic reviewer was then removed (label, labeler, auth user), so the corpus carries no fake evidence. The mechanism is proven; gate (b) still requires a human reviewer.
+Discrepancy:
+  - none
+Escalation to human:
+  - Recruit the first `reviewer_virtue`. `scripts/gate-b.mjs` is the reference implementation of the onboarding path.
