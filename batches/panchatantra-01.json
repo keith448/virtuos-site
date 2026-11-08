@@ -1,0 +1,113 @@
+[
+  {
+    "source": {
+      "external_id": "panchatantra-2.61",
+      "title": "Panchatantra 2.61",
+      "layer": "fable",
+      "tradition": "Indian story literature",
+      "original_language": "Sanskrit",
+      "date_or_era": "c. 3rd century BCE - 3rd century CE (recension); Jha ed. 1991",
+      "author": "Visnusarman (attributed)",
+      "rights_status": "licensed",
+      "licence": "CC BY-NC-SA 4.0 (GRETIL; ed. Ramchandra Jha, 6th ed., 1991)",
+      "citation": "Pancatantra 2.61, ed. Ramchandra Jha, 6th ed., Varanasi: Chowkhamba Vidyabhavan, 1991 (GRETIL sa_viSNuzarman-paJcatantra)"
+    },
+    "title": "The two syllables",
+    "situation": "A man loses his position and finds that the people who filled his house a month earlier no longer answer.",
+    "wise_response": "The verse does not tell him to chase them. It names the word 'friend' as a shelter in disaster and a medicine for grief, and leaves him to notice who is still there.",
+    "why_it_worked": "It defines friendship by what it does in the bad season, so the test is the timing of the arrival rather than the warmth of the greeting.",
+    "tempting_wrong_answer": "Count the people who were present when things were good, and treat the absence as a surprise.",
+    "virtues": [
+      { "name": "loyalty", "strength": 3 },
+      { "name": "compassion", "strength": 2 },
+      { "name": "care for the stranger", "strength": 2 }
+    ],
+    "narrative_form": "aphorism",
+    "agent_unit": "individual",
+    "beneficiary_unit": "other_person",
+    "original_text": "kenāmṛtam idaṃ sṛṣṭaṃ mitram ity akṣara-dvayam |\nāpadāṃ ca paritrāṇaṃ śoka-santāpa-bheṣajam ||",
+    "edition": "Ramchandra Jha, 6th ed., Varanasi: Chowkhamba Vidyabhavan, 1991 (Vidyabhavana Sanskrit Grantha Mala 17); GRETIL sa_viSNuzarman-paJcatantra",
+    "ai_translation": "By whom was this nectar made — the two syllables 'friend'? It is a shelter from disasters, a medicine for grief and burning sorrow.",
+    "key_terms": {
+      "mitra": "friend",
+      "āpad": "calamity, disaster",
+      "śoka-santāpa": "grief and burning pain"
+    },
+    "translation_notes": "AI translation made from the Sanskrit of the Jha edition (GRETIL). No modern scholarly translation consulted. Marked working until two readers of Sanskrit have verified it.",
+    "translation_status": "working"
+  },
+  {
+    "source": {
+      "external_id": "panchatantra-2.116",
+      "title": "Panchatantra 2.116",
+      "layer": "fable",
+      "tradition": "Indian story literature",
+      "original_language": "Sanskrit",
+      "date_or_era": "c. 3rd century BCE - 3rd century CE (recension); Jha ed. 1991",
+      "author": "Visnusarman (attributed)",
+      "rights_status": "licensed",
+      "licence": "CC BY-NC-SA 4.0 (GRETIL; ed. Ramchandra Jha, 6th ed., 1991)",
+      "citation": "Pancatantra 2.116, ed. Ramchandra Jha, 6th ed., Varanasi: Chowkhamba Vidyabhavan, 1991 (GRETIL sa_viSNuzarman-paJcatantra)"
+    },
+    "title": "A friend in the bad season",
+    "situation": "A man has to decide whom to trust with something that matters, and everyone around him is agreeable.",
+    "wise_response": "The verse gives him a test: look for the one who was present when things were bad, and treat the company of prosperity as unproven.",
+    "why_it_worked": "The test costs the other person something. Agreeableness is free, so it cannot pass a test built on adversity.",
+    "tempting_wrong_answer": "Trust the most agreeable person in the room.",
+    "virtues": [
+      { "name": "loyalty", "strength": 3 },
+      { "name": "prudence", "strength": 2 },
+      { "name": "honesty", "strength": 2 }
+    ],
+    "narrative_form": "aphorism",
+    "agent_unit": "individual",
+    "beneficiary_unit": "self",
+    "original_text": "āpat-kāle tu samprāpte yan mitraṃ mitram eva tat |\nvṛddhi-kāle tu samprāpte durjano 'pi suhṛd bhavet ||",
+    "edition": "Ramchandra Jha, 6th ed., Varanasi: Chowkhamba Vidyabhavan, 1991 (Vidyabhavana Sanskrit Grantha Mala 17); GRETIL sa_viSNuzarman-paJcatantra",
+    "ai_translation": "A friend at the time of calamity — that alone is a friend. At the time of prosperity, even a wicked man becomes a friend.",
+    "key_terms": {
+      "āpat-kāla": "time of calamity",
+      "vṛddhi-kāla": "time of prosperity, increase",
+      "durjana": "wicked person"
+    },
+    "translation_notes": "AI translation made from the Sanskrit of the Jha edition (GRETIL). No modern scholarly translation consulted. Marked working until two readers of Sanskrit have verified it.",
+    "translation_status": "working"
+  },
+  {
+    "source": {
+      "external_id": "panchatantra-1.454",
+      "title": "Panchatantra 1.454",
+      "layer": "fable",
+      "tradition": "Indian story literature",
+      "original_language": "Sanskrit",
+      "date_or_era": "c. 3rd century BCE - 3rd century CE (recension); Jha ed. 1991",
+      "author": "Visnusarman (attributed)",
+      "rights_status": "licensed",
+      "licence": "CC BY-NC-SA 4.0 (GRETIL; ed. Ramchandra Jha, 6th ed., 1991)",
+      "citation": "Pancatantra 1.454, ed. Ramchandra Jha, 6th ed., Varanasi: Chowkhamba Vidyabhavan, 1991 (GRETIL sa_viSNuzarman-paJcatantra)"
+    },
+    "title": "The three who break trust",
+    "situation": "A man has been let down by someone he trusted and is deciding whether to treat it as an ordinary disappointment.",
+    "wise_response": "The verse names three kinds together — betraying a friend, ingratitude, and destroying confidence — and refuses to treat any of them as small.",
+    "why_it_worked": "Naming the category makes the harm visible, so it cannot later be excused as a misunderstanding.",
+    "tempting_wrong_answer": "Call it a private grievance, say nothing, and keep the relationship as it was.",
+    "virtues": [
+      { "name": "loyalty", "strength": 3 },
+      { "name": "gratitude", "strength": 3 },
+      { "name": "keeping promises", "strength": 2 }
+    ],
+    "narrative_form": "aphorism",
+    "agent_unit": "individual",
+    "beneficiary_unit": "other_person",
+    "original_text": "mitra-drohī kṛtaghnaś ca yaś ca viśvāsa-ghātakaḥ |\nte narā narakaṃ yānti yāvac candra-divākarau ||",
+    "edition": "Ramchandra Jha, 6th ed., Varanasi: Chowkhamba Vidyabhavan, 1991 (Vidyabhavana Sanskrit Grantha Mala 17); GRETIL sa_viSNuzarman-paJcatantra",
+    "ai_translation": "The betrayer of a friend, the ungrateful man, and the destroyer of trust — those men go to hell as long as moon and sun endure.",
+    "key_terms": {
+      "mitra-drohin": "one who harms a friend",
+      "kṛtaghna": "ungrateful",
+      "viśvāsa-ghātaka": "destroyer of trust"
+    },
+    "translation_notes": "AI translation made from the Sanskrit of the Jha edition (GRETIL). No modern scholarly translation consulted. Marked working until two readers of Sanskrit have verified it.",
+    "translation_status": "working"
+  }
+]
