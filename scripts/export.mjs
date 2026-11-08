@@ -153,6 +153,8 @@ const rows = entries.map((e) => {
       created_by: e.created_by,
       created_at: e.created_at,
       updated_at: e.updated_at,
+      retired_at: e.retired_at,
+      retired_reason: e.retired_reason,
     },
   };
 });

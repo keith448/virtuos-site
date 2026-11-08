@@ -25,12 +25,12 @@ Full design: [master-plan.md](./master-plan.md).
 
 ## State, 2026-11-08
 
-- 1,670 entries: 11 approved, 1,659 draft, 0 in review. 1,659 are AI drafts.
-- Provenance: 785 of 1,670 entries carry original-language text (47%). Arabic 700/700,
-  Coptic 23/23, Hebrew 14/14, Sanskrit 11/11, Pali 10/157 — but Greek 1/192.
+- 1,523 live entries: 11 approved, 1,512 draft, 0 in review. 147 retired.
+- Provenance: 785 of 1,523 live entries carry original-language text (52%). Arabic 700/700,
+  Coptic 23/23, Hebrew 14/14, Sanskrit 11/11, Pali 10/10 — but Greek 1/192.
 - Sanskrit: 11 entries, all carrying original text and a named edition; none verified.
-- Pali: 10 new Dhammapada entries carry the Pali and Sujato's CC0 translation; the
-  147 older Jataka entries still carry neither.
+- Pali: 10 Dhammapada entries carry the Pali and Sujato's CC0 translation. The 147
+  older Jataka entries were retired as unprovenanced and are excluded from counts.
 - All five layers populated. Film 12, achievement 20. Achievement now carries
   patience, contentment, prudence, mercy and reciprocity; six virtues still absent
   there: compassion, gratitude, honesty, keeping promises, loyalty, respect for elders.

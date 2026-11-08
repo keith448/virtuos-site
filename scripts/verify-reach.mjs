@@ -47,7 +47,7 @@ async function pull(table, select = "*") {
 
 const [entries, sources, traditions, virtues, entryVirtues, labels, labelers, view] =
   await Promise.all([
-    pull("entries", "id,status,source_id,origin_tradition_id,created_by"),
+    pull("entries", "id,status,source_id,origin_tradition_id,created_by,retired_at"),
     pull("sources", "id,tradition_id"),
     pull("traditions", "id,parent_id"),
     pull("virtues", "id,name"),
@@ -93,7 +93,7 @@ for (const v of virtues) {
   for (const ev of entryVirtues) {
     if (ev.virtue_id !== v.id) continue;
     const e = entryById.get(ev.entry_id);
-    if (!e || e.status !== "approved") continue;
+    if (!e || e.status !== "approved" || e.retired_at) continue;
 
     const entryRoot = rootOf(entryTradition(e));
     if (!entryRoot) continue;
