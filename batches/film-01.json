@@ -1,0 +1,150 @@
+[
+  {
+    "source": {
+      "external_id": "film-seven-samurai",
+      "title": "Seven Samurai",
+      "layer": "film",
+      "tradition": "Japanese",
+      "original_language": "Japanese",
+      "date_or_era": "1954",
+      "author": "Akira Kurosawa",
+      "rights_status": "own_summary",
+      "citation": "Seven Samurai (1954), dir. Akira Kurosawa, Toho"
+    },
+    "title": "The village that hired its defenders",
+    "situation": "A poor farming village is raided every harvest by bandits. The villagers have no weapons and no fighters, and can offer only food.",
+    "wise_response": "Kambei, a veteran samurai, takes the task because it is right rather than because it pays, and recruits others on the same terms. The samurai train the villagers, fortify the village, and fight beside them instead of in their place.",
+    "why_it_worked": "They treated the villagers as partners rather than clients. Teaching people to defend themselves spread courage through the village, so the defence did not depend on a handful of hired swords.",
+    "tempting_wrong_answer": "Hire mercenaries and let them do the fighting while the village watches, or promise payment the village cannot keep.",
+    "virtues": [
+      { "name": "courage", "strength": 3 },
+      { "name": "cooperation", "strength": 3 },
+      { "name": "justice", "strength": 2 },
+      { "name": "humility", "strength": 2 }
+    ],
+    "translation_notes": "Own summary of the film's moral arc. No script or dialogue reproduced."
+  },
+  {
+    "source": {
+      "external_id": "film-children-of-heaven",
+      "title": "Children of Heaven",
+      "layer": "film",
+      "tradition": "Iranian",
+      "original_language": "Persian",
+      "date_or_era": "1997",
+      "author": "Majid Majidi",
+      "rights_status": "own_summary",
+      "citation": "Children of Heaven (1997), dir. Majid Majidi"
+    },
+    "title": "One pair of shoes",
+    "situation": "A boy loses his sister's only pair of shoes. The family is poor, new shoes mean a debt they cannot carry, and telling their father risks punishment.",
+    "wise_response": "The brother and sister share his sneakers in secret — she wears them in the morning, he in the afternoon — and he enters a race hoping to win third prize, a new pair of shoes.",
+    "why_it_worked": "They carried the cost themselves instead of passing it to their parents, and kept their promise to each other even when it was humiliating and inconvenient.",
+    "tempting_wrong_answer": "Blame each other, steal a pair, or hide the loss until it grows into a crisis the whole family pays for.",
+    "virtues": [
+      { "name": "keeping promises", "strength": 3 },
+      { "name": "loyalty", "strength": 3 },
+      { "name": "perseverance", "strength": 3 },
+      { "name": "honesty", "strength": 2 }
+    ],
+    "translation_notes": "Own summary of the film's moral arc. No script or dialogue reproduced."
+  },
+  {
+    "source": {
+      "external_id": "film-whale-rider",
+      "title": "Whale Rider",
+      "layer": "film",
+      "tradition": "Maori",
+      "original_language": "English and Maori",
+      "date_or_era": "2002",
+      "author": "Niki Caro",
+      "rights_status": "own_summary",
+      "citation": "Whale Rider (2002), dir. Niki Caro"
+    },
+    "title": "The granddaughter who claimed the canoe",
+    "situation": "A Maori community's leader expects a male heir. His granddaughter Pai is a natural leader, but he refuses to train her because tradition says the line passes to a son.",
+    "wise_response": "Pai learns the old ways in secret, and when the community's canoe is lost and the whales strand, she rides the whale back to sea and returns — claiming her place without humiliating her grandfather.",
+    "why_it_worked": "She neither fought the tradition nor abandoned it. She fulfilled it better than the rule allowed, so the community could recognize her without having to admit the rule was wrong.",
+    "tempting_wrong_answer": "Obey and disappear, or break with the elders and take leadership by force.",
+    "virtues": [
+      { "name": "courage", "strength": 3 },
+      { "name": "perseverance", "strength": 3 },
+      { "name": "respect for elders", "strength": 2 },
+      { "name": "humility", "strength": 2 }
+    ],
+    "translation_notes": "Own summary of the film's moral arc. No script or dialogue reproduced."
+  },
+  {
+    "source": {
+      "external_id": "film-central-station",
+      "title": "Central Station",
+      "layer": "film",
+      "tradition": "Brazilian",
+      "original_language": "Portuguese",
+      "date_or_era": "1998",
+      "author": "Walter Salles",
+      "rights_status": "own_summary",
+      "citation": "Central Station (1998), dir. Walter Salles"
+    },
+    "title": "The letter writer and the boy",
+    "situation": "A retired teacher writes letters for illiterate strangers at a train station. A woman is killed by a bus, leaving her young son with nowhere to go.",
+    "wise_response": "Dora, cynical and poor, first sells the boy to an adoption ring. Then she takes him back and travels across Brazil to find a father she does not know and may not exist.",
+    "why_it_worked": "She acted before she felt ready, and kept acting after the easy part was over. The boy's trust came from her staying, not from anything she said.",
+    "tempting_wrong_answer": "Hand him to an institution, or keep the money and tell herself it was for the best.",
+    "virtues": [
+      { "name": "care for the stranger", "strength": 3 },
+      { "name": "compassion", "strength": 3 },
+      { "name": "honesty", "strength": 2 }
+    ],
+    "translation_notes": "Own summary of the film's moral arc. No script or dialogue reproduced."
+  },
+  {
+    "source": {
+      "external_id": "film-ip-man",
+      "title": "Ip Man",
+      "layer": "film",
+      "tradition": "Chinese",
+      "original_language": "Cantonese",
+      "date_or_era": "2008",
+      "author": "Wilson Yip",
+      "rights_status": "own_summary",
+      "citation": "Ip Man (2008), dir. Wilson Yip"
+    },
+    "title": "The master who held back",
+    "situation": "A martial arts master loses his wealth in the war and takes factory work. A rival challenges him publicly to prove which school is superior.",
+    "wise_response": "Ip Man accepts the fight but holds back, refuses to humiliate the challenger, and keeps teaching that kung fu is for restraint rather than display.",
+    "why_it_worked": "He won without making an enemy. The restraint cost him face and preserved the community he had to live in.",
+    "tempting_wrong_answer": "Win decisively and publicly to build his reputation while he has nothing else left.",
+    "virtues": [
+      { "name": "self-control", "strength": 3 },
+      { "name": "humility", "strength": 3 },
+      { "name": "courage", "strength": 2 }
+    ],
+    "translation_notes": "Own summary of the film's moral arc. No script or dialogue reproduced."
+  },
+  {
+    "source": {
+      "external_id": "film-intouchables",
+      "title": "The Intouchables",
+      "layer": "film",
+      "tradition": "French",
+      "original_language": "French",
+      "date_or_era": "2011",
+      "author": "Olivier Nakache and Eric Toledano",
+      "rights_status": "own_summary",
+      "citation": "The Intouchables (2011), dirs. Olivier Nakache and Eric Toledano"
+    },
+    "title": "The applicant who did not want the job",
+    "situation": "A wealthy quadriplegic, Philippe, is interviewing caretakers. Driss, a young man from the projects, applies only to get a signature proving he was rejected for benefits.",
+    "wise_response": "Philippe hires him anyway — not out of charity, but because Driss treats him as a man rather than a patient. Driss, in turn, refuses to indulge Philippe's self-pity and pushes him back into life.",
+    "why_it_worked": "Each gave the other what the other could not ask for. Philippe gave trust and a chance; Driss gave honesty and refused pity.",
+    "tempting_wrong_answer": "Hire the most qualified applicant and manage the relationship as a service.",
+    "virtues": [
+      { "name": "care for the stranger", "strength": 3 },
+      { "name": "honesty", "strength": 3 },
+      { "name": "compassion", "strength": 2 },
+      { "name": "courage", "strength": 2 }
+    ],
+    "translation_notes": "Own summary of the film's moral arc. No script or dialogue reproduced."
+  }
+]
