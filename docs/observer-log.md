@@ -100,3 +100,14 @@ Discrepancy:
   - 952 with original in the release against 985 live overall: the 33 excluded entries (23 Coptic, 3 Gita, 7 GRETIL) carry originals but are not publishable.
 Escalation to human:
   - The observer's "cannot verify" list is closed by attaching the migration files with the next bundle; the view and function definitions live there.
+
+## 2026-11-08 | Reviewer views
+Builder claim:
+  - `coverage_cells` view: approved strength-3 entries per lineage root and virtue. 9 populated cells across 9 roots and 20 virtues: reciprocity 6 roots, gratitude 3.
+  - `coverage.html`: matrix of roots x virtues, with the reviewed count from `virtue_reach` as a footer row. Shows 0/5 everywhere today.
+  - `entry.html`: authenticated read-only entry view with the four parts, original, translations, virtues, label counts and provenance. List mode when no id is supplied.
+  - `reviewer.html`: keyboard shortcuts (A agree, D disagree, S skip), progress counter, session rate. Time-on-item is displayed but not persisted; persisting needs a column on `labels`.
+Discrepancy:
+  - none
+Escalation to human:
+  - Public read-only access for approved entries is still a policy decision; the RLS policies are authenticated-only, so `entry.html` requires sign-in.
