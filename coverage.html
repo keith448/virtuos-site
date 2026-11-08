@@ -36,6 +36,9 @@
   td.rev { border-left:1px solid var(--hair); color:var(--muted); padding-left:14px; }
   th.rev { border-left:1px solid var(--hair); font-variant:small-caps; color:var(--muted);
            font-size:11px; text-align:left; padding-left:14px; }
+  .ticks { display:inline-flex; gap:2px; vertical-align:middle; }
+  .ticks i { width:5px; height:12px; border:1px solid var(--hair); display:block; }
+  .ticks i.on { background:var(--ink); border-color:var(--ink); }
   caption { caption-side:bottom; text-align:left; font-size:12.5px; color:var(--muted);
             padding-top:14px; max-width:760px; line-height:1.5; }
   input, button { font:inherit; font-size:14px; padding:5px 9px; border:1px solid var(--hair);
@@ -120,15 +123,19 @@ async function render() {
   const foot = document.createElement("tr");
   foot.innerHTML =
     `<th class="root">reviewed</th>` +
-    cols.map((v) => `<td>${reviewed.get(v.id)?.traditions_reached ?? 0}/5</td>`).join("") +
+    cols.map((v) => {
+      const n = reviewed.get(v.id)?.traditions_reached ?? 0;
+      const ticks = Array.from({ length: 5 }, (_, i) => `<i class="${i < n ? "on" : ""}"></i>`).join("");
+      return `<td><span class="ticks" title="${n} of 5 lineages reviewed">${ticks}</span></td>`;
+    }).join("") +
     `<td class="rev">${(reach.data || []).filter((r) => r.in_shared_core).length} in core</td>`;
   t.appendChild(foot);
 
   document.getElementById("cap").textContent =
     `Approved strength-3 entries. Blank cells hold none. ` +
     `${(cells.data || []).length} cells populated across ${rows.length} roots. ` +
-    `The bottom row counts lineages with an outside label; five reach the shared core. ` +
-    `Every cell is zero today.`;
+    `Bottom row: five ticks per virtue, one per lineage with an outside label. ` +
+    `Five filled marks reach the shared core. Every tick is empty today.`;
 }
 </script>
 </body>
