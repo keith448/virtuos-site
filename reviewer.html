@@ -51,8 +51,7 @@
     <div style="height:8px"></div>
     <input id="password" type="password" placeholder="password" autocomplete="current-password">
     <div class="row"><button id="signinBtn">Sign in</button></div>
-    <div class="row"><button id="googleBtn">Continue with Google</button></div>
-    <div class="meta" style="margin-top:8px">or use the password you were sent</div>
+    <div class="meta" style="margin-top:8px">Use the email and password you were sent.</div>
     <div id="signinMsg" class="err"></div>
   </section>
 
@@ -128,15 +127,7 @@ $("signinBtn").onclick = async () => {
   await start();
 };
 
-$("googleBtn").onclick = async () => {
-  const { error } = await db.auth.signInWithOAuth({
-    provider: "google",
-    options: { redirectTo: location.origin + location.pathname },
-  });
-  if (error) $("signinMsg").textContent = error.message;
-};
-
-// Returning from an OAuth redirect, or already signed in from another page.
+// Returning from a session created on another page.
 (async () => {
   const { data } = await db.auth.getSession();
   if (data?.session) { session = data.session; await start(); }
