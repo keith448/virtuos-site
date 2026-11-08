@@ -38,6 +38,16 @@ GRETIL text inherits that restriction. Three ways to handle it:
 
 Currently doing (3): the column exists and every source now carries a licence.
 
+## Chinese Wikisource
+
+<https://zh.wikisource.org/wiki/論語>
+
+- One page per book, one `<div id="一之一">` per verse, so book.verse is explicit.
+- Transcription licence: CC BY-SA 4.0. The underlying text is public domain.
+- Used to attach Chinese originals to the 200 Analects entries: `scripts/fetch-analects.mjs`
+  builds `data/analects/verses.json` (501 verses), `scripts/backfill-analects.mjs`
+  matches by `story_title` and writes `original_text` and `edition`.
+
 ## Still to wire
 
 - **Perseus / Scaife** — Greek and Latin with editions.
