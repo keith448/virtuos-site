@@ -40,7 +40,7 @@ async function pull(table, select = "*") {
   return rows;
 }
 
-const [entries, sources, traditions, virtues, entryVirtues, labels, labelers, reach, raw] =
+const [entries, sources, traditions, virtues, entryVirtues, labels, labelers, reach, raw, release] =
   await Promise.all([
     pull("entries"),
     pull("sources"),
@@ -48,9 +48,10 @@ const [entries, sources, traditions, virtues, entryVirtues, labels, labelers, re
     pull("virtues", "id,name"),
     pull("entry_virtues"),
     pull("labels"),
-    pull("labelers", "id,name,tradition_id,role,tradition_background"),
+    pull("labelers", "id,name,tradition_ids,role,tradition_background"),
     pull("virtue_reach"),
     pull("virtue_reach_raw"),
+    pull("source_release", "id,title,rights_status,licence,release_status"),
   ]);
 
 const byId = (rows) => new Map(rows.map((r) => [r.id, r]));
@@ -111,7 +112,7 @@ writeFileSync(resolve(outDir, "entries.csv"), toCsv(entryHeaders, entryRows));
 writeFileSync(resolve(outDir, "traditions.csv"), toCsv(["id", "name", "parent_id"], traditions));
 writeFileSync(
   resolve(outDir, "labelers.csv"),
-  toCsv(["id", "name", "tradition_id", "role", "tradition_background"], labelers),
+  toCsv(["id", "name", "tradition_ids", "role", "tradition_background"], labelers),
 );
 writeFileSync(
   resolve(outDir, "labels.csv"),
@@ -127,6 +128,10 @@ writeFileSync(
     ["virtue_id", "virtue", "traditions_approved", "approved_entries", "would_be_core"],
     raw,
   ),
+);
+writeFileSync(
+  resolve(outDir, "source_release.csv"),
+  toCsv(["id", "title", "rights_status", "licence", "release_status"], release),
 );
 
 // Deterministic 20-entry sample, spread across languages, for the V1/V2 spot-check.
@@ -175,6 +180,7 @@ for (const f of [
   "labels.csv",
   "virtue_reach.csv",
   "virtue_reach_raw.csv",
+  "source_release.csv",
   "sample-20.json",
 ]) {
   console.log(`  ${f}  ${kb(f)} KB`);
