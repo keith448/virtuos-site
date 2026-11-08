@@ -1,0 +1,150 @@
+[
+  {
+    "source": {
+      "external_id": "panchatantra-1.95",
+      "title": "Panchatantra 1.95",
+      "layer": "fable",
+      "tradition": "Indian story literature",
+      "original_language": "Sanskrit",
+      "date_or_era": "c. 3rd century BCE - 3rd century CE (recension); Jha ed. 1991",
+      "author": "Visnusarman (attributed)",
+      "rights_status": "licensed",
+      "licence": "CC BY-NC-SA 4.0 (GRETIL; ed. Ramchandra Jha, 6th ed., 1991)",
+      "citation": "Pancatantra 1.95, ed. Ramchandra Jha, 6th ed., Varanasi: Chowkhamba Vidyabhavan, 1991 (GRETIL sa_viSNuzarman-paJcatantra)"
+    },
+    "title": "The servant worth keeping",
+    "situation": "A king has to choose whom to keep close, and the men who flatter him are the easiest to keep.",
+    "wise_response": "The verse describes the servant worth keeping: one who arrives without being summoned, waits at the door, and answers with measured truth when asked.",
+    "why_it_worked": "It rewards availability and restraint together. The flatterer is always available but never measured; the blunt man is measured but often absent.",
+    "tempting_wrong_answer": "Keep the man who agrees with everything and is always in the room.",
+    "virtues": [
+      { "name": "honesty", "strength": 3 },
+      { "name": "humility", "strength": 2 },
+      { "name": "loyalty", "strength": 2 }
+    ],
+    "narrative_form": "aphorism",
+    "agent_unit": "individual",
+    "beneficiary_unit": "other_person",
+    "original_text": "yo 'nāhūtaḥ samabhyeti dvāri tiṣṭhati sarvadā |\npṛṣṭhaḥ satyaṃ mitaṃ brūte sa bhṛtyo 'rho mahībhujām ||",
+    "edition": "Ramchandra Jha, 6th ed., Varanasi: Chowkhamba Vidyabhavan, 1991 (Vidyabhavana Sanskrit Grantha Mala 17); GRETIL sa_viSNuzarman-paJcatantra",
+    "ai_translation": "He who comes without being called, who always stands at the door, and who, when asked, speaks the truth in measure — that servant is worthy of kings.",
+    "key_terms": {
+      "anāhūta": "uncalled, without being summoned",
+      "mita": "measured, moderate",
+      "bhṛtya": "servant, retainer"
+    },
+    "translation_notes": "AI translation made from the Sanskrit of the Jha edition (GRETIL). No modern scholarly translation consulted. Marked working until two readers of Sanskrit have verified it.",
+    "translation_status": "working"
+  },
+  {
+    "source": {
+      "external_id": "panchatantra-1.243",
+      "title": "Panchatantra 1.243",
+      "layer": "fable",
+      "tradition": "Indian story literature",
+      "original_language": "Sanskrit",
+      "date_or_era": "c. 3rd century BCE - 3rd century CE (recension); Jha ed. 1991",
+      "author": "Visnusarman (attributed)",
+      "rights_status": "licensed",
+      "licence": "CC BY-NC-SA 4.0 (GRETIL; ed. Ramchandra Jha, 6th ed., 1991)",
+      "citation": "Pancatantra 1.243, ed. Ramchandra Jha, 6th ed., Varanasi: Chowkhamba Vidyabhavan, 1991 (GRETIL sa_viSNuzarman-paJcatantra)"
+    },
+    "title": "The king as gardener",
+    "situation": "A ruler wants his realm to prosper and is deciding where the money should go.",
+    "wise_response": "The verse compares him to a gardener: the people are the shoots, and giving and honour are the water. He is judged by whether they grow.",
+    "why_it_worked": "It makes the ruler's own reward depend on the people's growth, so generosity becomes the mechanism of his interest rather than a virtue he can postpone.",
+    "tempting_wrong_answer": "Keep the treasury full and call it prudence.",
+    "virtues": [
+      { "name": "generosity", "strength": 3 },
+      { "name": "justice", "strength": 2 },
+      { "name": "care for the stranger", "strength": 2 }
+    ],
+    "narrative_form": "aphorism",
+    "agent_unit": "institution",
+    "beneficiary_unit": "community",
+    "original_text": "phalārthī nṛpatir lokān pālayed yatnam āsthitaḥ |\ndāna-mānādi-toyena mālākāro 'ṅkurān iva ||",
+    "edition": "Ramchandra Jha, 6th ed., Varanasi: Chowkhamba Vidyabhavan, 1991 (Vidyabhavana Sanskrit Grantha Mala 17); GRETIL sa_viSNuzarman-paJcatantra",
+    "ai_translation": "A king who seeks the fruit should protect his people with effort, watering them like a gardener waters shoots — with giving, honour, and the rest.",
+    "key_terms": {
+      "phalārthin": "one who seeks the fruit, the reward",
+      "dāna": "giving",
+      "aṅkura": "shoot, sprout"
+    },
+    "translation_notes": "AI translation made from the Sanskrit of the Jha edition (GRETIL). No modern scholarly translation consulted. Marked working until two readers of Sanskrit have verified it.",
+    "translation_status": "working"
+  },
+  {
+    "source": {
+      "external_id": "panchatantra-2.176",
+      "title": "Panchatantra 2.176",
+      "layer": "fable",
+      "tradition": "Indian story literature",
+      "original_language": "Sanskrit",
+      "date_or_era": "c. 3rd century BCE - 3rd century CE (recension); Jha ed. 1991",
+      "author": "Visnusarman (attributed)",
+      "rights_status": "licensed",
+      "licence": "CC BY-NC-SA 4.0 (GRETIL; ed. Ramchandra Jha, 6th ed., 1991)",
+      "citation": "Pancatantra 2.176, ed. Ramchandra Jha, 6th ed., Varanasi: Chowkhamba Vidyabhavan, 1991 (GRETIL sa_viSNuzarman-paJcatantra)"
+    },
+    "title": "The repair after harsh words",
+    "situation": "A man has said something harsh in an argument and the room has gone quiet.",
+    "wise_response": "The verse is the repair: it names the fault without excusing it — whether from ignorance or from knowing better — and asks forgiveness plainly.",
+    "why_it_worked": "It asks without conditions and without a defence, which is what makes it possible for the other person to answer.",
+    "tempting_wrong_answer": "Explain why the harsh words were justified, or wait for the other person to apologize first.",
+    "virtues": [
+      { "name": "forgiveness", "strength": 3 },
+      { "name": "humility", "strength": 2 },
+      { "name": "patience", "strength": 2 }
+    ],
+    "narrative_form": "aphorism",
+    "agent_unit": "individual",
+    "beneficiary_unit": "other_person",
+    "original_text": "ajñānāj jñānato vāpi duruktaṃ yad udāhṛtam |\nmayā tat kṣamyatām adya dvābhyām api prasādataḥ ||",
+    "edition": "Ramchandra Jha, 6th ed., Varanasi: Chowkhamba Vidyabhavan, 1991 (Vidyabhavana Sanskrit Grantha Mala 17); GRETIL sa_viSNuzarman-paJcatantra",
+    "ai_translation": "Whatever harsh word was spoken by me, through ignorance or through knowledge, let it be forgiven today, by the grace of both.",
+    "key_terms": {
+      "durukta": "harsh or badly spoken word",
+      "kṣam": "to forgive, to bear",
+      "prasāda": "grace, favour"
+    },
+    "translation_notes": "AI translation made from the Sanskrit of the Jha edition (GRETIL). No modern scholarly translation consulted. Marked working until two readers of Sanskrit have verified it.",
+    "translation_status": "working"
+  },
+  {
+    "source": {
+      "external_id": "panchatantra-2.163",
+      "title": "Panchatantra 2.163",
+      "layer": "fable",
+      "tradition": "Indian story literature",
+      "original_language": "Sanskrit",
+      "date_or_era": "c. 3rd century BCE - 3rd century CE (recension); Jha ed. 1991",
+      "author": "Visnusarman (attributed)",
+      "rights_status": "licensed",
+      "licence": "CC BY-NC-SA 4.0 (GRETIL; ed. Ramchandra Jha, 6th ed., 1991)",
+      "citation": "Pancatantra 2.163, ed. Ramchandra Jha, 6th ed., Varanasi: Chowkhamba Vidyabhavan, 1991 (GRETIL sa_viSNuzarman-paJcatantra)"
+    },
+    "title": "No wealth like contentment",
+    "situation": "A man has enough, and the people around him are acquiring more.",
+    "wise_response": "The verse compares two kinds of possession: character as an ornament and contentment as wealth, and says nothing else is equal to either.",
+    "why_it_worked": "It changes what counts as having. If contentment is wealth, then the race for more is not a way of getting richer.",
+    "tempting_wrong_answer": "Measure himself against the people who have more, and call the difference a lack.",
+    "virtues": [
+      { "name": "contentment", "strength": 3 },
+      { "name": "humility", "strength": 2 },
+      { "name": "self-control", "strength": 2 }
+    ],
+    "narrative_form": "aphorism",
+    "agent_unit": "individual",
+    "beneficiary_unit": "self",
+    "original_text": "vibhūṣaṇaṃ śīla-samaṃ na cānyat |\nsantoṣa-tulyaṃ dhanam asti nānyat ||",
+    "edition": "Ramchandra Jha, 6th ed., Varanasi: Chowkhamba Vidyabhavan, 1991 (Vidyabhavana Sanskrit Grantha Mala 17); GRETIL sa_viSNuzarman-paJcatantra",
+    "ai_translation": "There is no ornament equal to good character, and no wealth equal to contentment.",
+    "key_terms": {
+      "śīla": "character, conduct",
+      "santoṣa": "contentment",
+      "vibhūṣaṇa": "ornament, adornment"
+    },
+    "translation_notes": "AI translation made from the Sanskrit of the Jha edition (GRETIL). No modern scholarly translation consulted. Marked working until two readers of Sanskrit have verified it.",
+    "translation_status": "working"
+  }
+]
