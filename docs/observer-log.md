@@ -111,3 +111,13 @@ Discrepancy:
   - none
 Escalation to human:
   - Public read-only access for approved entries is still a policy decision; the RLS policies are authenticated-only, so `entry.html` requires sign-in.
+
+## 2026-11-08 | Reviewer onboarding
+Builder claim:
+  - `scripts/add-reviewer.mjs` creates the auth user through the admin API and upserts the labeler row with queue role, `tradition_ids` and `languages`. Supports `--list` and `--delete`.
+  - `reviewer_queue(p_limit default 50)` now serves batches; the previous zero-argument version was dropped. PostgREST's 1,000-row cap was silently truncating the queue.
+  - Tested end to end: created a reviewer with Rabbinic Judaism, signed in over the public API, `reviewer_queue` returned 50 pairs, then deleted the account and its labeler row.
+Discrepancy:
+  - none
+Escalation to human:
+  - The first real reviewer still needs an email address and a tradition.

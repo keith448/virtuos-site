@@ -145,22 +145,30 @@ async function loadQueue() {
   const { data, error } = await db.rpc("reviewer_queue");
   if (error) { $("signinMsg").textContent = error.message; return; }
   queue = data ?? [];
-  stats.total = queue.length;
+  exhausted = false;
   next();
 }
 
+let exhausted = false;
+
 function progress() {
+  const remaining = queue.length + (current ? 1 : 0);
+  const total = stats.done + remaining;
   const avg = stats.done ? Math.round(stats.seconds / stats.done) : 0;
   $("progress").textContent =
-    `${stats.done} labeled · ${Math.max(stats.total - stats.done, 0)} remaining` +
-    (avg ? ` · ${avg}s per entry` : "");
-  $("barFill").style.width = stats.total ? `${Math.round((stats.done / stats.total) * 100)}%` : "0%";
+    `${stats.done} labeled · ${remaining} in queue` + (avg ? ` · ${avg}s per entry` : "");
+  $("barFill").style.width = total ? `${Math.round((stats.done / total) * 100)}%` : "0%";
 }
 
-function next() {
+async function next() {
   current = queue.shift();
-  if (!current) { hide("queue"); hide("judgment"); show("doneCard"); return; }
-  render(current);
+  if (current) { render(current); return; }
+  if (!exhausted) {
+    exhausted = true;
+    const { data } = await db.rpc("reviewer_queue");
+    if (data && data.length) { queue = data; next(); return; }
+  }
+  hide("queue"); hide("judgment"); show("doneCard");
 }
 
 async function render(pair) {
