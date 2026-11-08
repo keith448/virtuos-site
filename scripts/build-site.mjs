@@ -39,4 +39,4 @@ a{color:#111;text-underline-offset:3px}.m{color:#6b6b6b;font-size:13px;font-styl
 </main>`,
 );
 
-console.log("Built site/ — deploy this folder, never the repository root.");
+console.log("Built site/ — Vercel runs this on deploy; the folder is gitignored.");
