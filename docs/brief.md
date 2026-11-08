@@ -31,8 +31,8 @@ Full design: [master-plan.md](./master-plan.md).
   patience, contentment, prudence, mercy and reciprocity; six virtues still absent
   there: compassion, gratitude, honesty, keeping promises, loyalty, respect for elders.
 - **Shared core: empty.** Under the codebook's strength-3 rule and tree v1, only
-  reciprocity reaches five lineages (6). Gratitude falls to 3 and mercy to 2 once
-  merged lineages are counted once.
+  reciprocity reaches five lineages (6). Gratitude falls to 3. Mercy falls to
+  **0** — every current mercy entry is really about repayment or gratitude.
 - 20 virtues, 47 traditions, 81 sources, 25 parallels.
 - 0 auth users. `labels` is empty. `scenarios` and `model_runs` are empty.
 
