@@ -90,3 +90,13 @@ Discrepancy:
   - none
 Escalation to human:
   - `reviewer.html` needs `SUPABASE_KEY` filled with the publishable key before it can be used.
+
+## 2026-11-08 | Release artifact
+Builder claim:
+  - `scripts/export-release.mjs` writes `release/<version>/`: `entries.jsonl`, `virtue_reach.csv`, `virtue_reach_raw.csv`, `tree.csv`, `README.md` (dataset card), `manifest.json` with sha256 per file.
+  - `v0.1-draft`: 1,490 publishable entries, 57 roots, 37 languages, 952 holding original text, 0 verified, 0 in core. Excludes `research_only` and `unclear` sources by construction.
+  - The card states the empty core, zero verified translations and uneven coverage, and is marked draft, not citable.
+Discrepancy:
+  - 952 with original in the release against 985 live overall: the 33 excluded entries (23 Coptic, 3 Gita, 7 GRETIL) carry originals but are not publishable.
+Escalation to human:
+  - The observer's "cannot verify" list is closed by attaching the migration files with the next bundle; the view and function definitions live there.
