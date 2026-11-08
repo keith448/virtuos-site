@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>VirtuOS — coverage</title>
+<style>
+  :root {
+    --paper: #fffff8;
+    --ink: #111;
+    --muted: #6b6b6b;
+    --rule: #e6e1d4;
+    --hair: #cfc8b6;
+    --fill1: #f1ecdf;
+    --fill2: #ddd2b8;
+    --fill3: #c3b28a;
+    --fill4: #9a8459;
+  }
+  html { background: var(--paper); }
+  body { margin:0; color:var(--ink); font:16px/1.55 Georgia, "Iowan Old Style", "Times New Roman", serif; }
+  main { padding: 40px 28px 80px; max-width: 1100px; }
+  h1 { font-size:20px; font-weight:normal; margin:0 0 2px; }
+  .sub { color:var(--muted); font-size:13px; font-style:italic; margin-bottom:28px; }
+  .wrap { overflow-x:auto; }
+  table { border-collapse: collapse; font-variant-numeric: tabular-nums; }
+  th, td { padding:5px 9px; font-size:13px; font-weight:normal; }
+  th.root { text-align:left; font-variant:small-caps; letter-spacing:.03em; white-space:nowrap; padding-right:22px; }
+  th.virtue { writing-mode:vertical-rl; transform:rotate(180deg); height:112px; font-size:11px;
+              font-variant:small-caps; color:var(--muted); text-align:left; padding:0 4px 6px; }
+  td { text-align:right; min-width:26px; }
+  tr td { border-bottom:1px solid var(--rule); }
+  tr:last-child td { border-bottom:1px solid var(--hair); }
+  td.c1 { background:var(--fill1); }
+  td.c2 { background:var(--fill2); }
+  td.c3 { background:var(--fill3); }
+  td.c4 { background:var(--fill4); color:#fff; }
+  td.rev { border-left:1px solid var(--hair); color:var(--muted); padding-left:14px; }
+  th.rev { border-left:1px solid var(--hair); font-variant:small-caps; color:var(--muted);
+           font-size:11px; text-align:left; padding-left:14px; }
+  caption { caption-side:bottom; text-align:left; font-size:12.5px; color:var(--muted);
+            padding-top:14px; max-width:760px; line-height:1.5; }
+  input, button { font:inherit; font-size:14px; padding:5px 9px; border:1px solid var(--hair);
+                  background:transparent; border-radius:0; color:var(--ink); }
+  button { cursor:pointer; border-color:var(--ink); }
+  .err { color:#8a2a1f; font-size:13px; margin-top:8px; }
+  .signin { margin-bottom:24px; }
+  .signin input { margin-right:6px; }
+</style>
+</head>
+<body>
+<main>
+  <h1>Coverage</h1>
+  <div class="sub">Approved strength-3 entries, by lineage root. A virtue needs five roots, each attested from outside.</div>
+
+  <section id="signin" class="signin">
+    <input id="email" type="email" placeholder="email">
+    <input id="password" type="password" placeholder="password">
+    <button id="go">Sign in</button>
+    <div id="msg" class="err"></div>
+  </section>
+
+  <section id="grid" hidden>
+    <div class="wrap"><table id="matrix"><caption id="cap"></caption></table></div>
+  </section>
+</main>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
+<script>
+const db = supabase.createClient(
+  "https://tgfbsplvimtzoxtffkpx.supabase.co",
+  "sb_publishable_o0cVWcYynklEDtSgECbW4Q_2RCg8Y1O"
+);
+
+document.getElementById("go").onclick = async () => {
+  const { error } = await db.auth.signInWithPassword({
+    email: document.getElementById("email").value.trim(),
+    password: document.getElementById("password").value,
+  });
+  if (error) { document.getElementById("msg").textContent = error.message; return; }
+  document.getElementById("signin").hidden = true;
+  document.getElementById("grid").hidden = false;
+  render();
+};
+
+async function render() {
+  const [cells, roots, virtues, reach] = await Promise.all([
+    db.from("coverage_cells").select("*"),
+    db.from("traditions").select("id,name,parent_id").is("parent_id", null),
+    db.from("virtues").select("id,name"),
+    db.from("virtue_reach").select("virtue_id,virtue,traditions_reached,in_shared_core"),
+  ]);
+
+  const used = new Set((cells.data || []).map((c) => c.root_id));
+  const rows = (roots.data || []).filter((r) => used.has(r.id));
+  const cols = (virtues.data || []).slice().sort((a, b) => a.name.localeCompare(b.name));
+  const at = new Map((cells.data || []).map((c) => [`${c.root_id}|${c.virtue_id}`, c.entries]));
+  const reviewed = new Map((reach.data || []).map((r) => [r.virtue_id, r]));
+
+  const t = document.getElementById("matrix");
+  t.querySelectorAll("tr").forEach((tr) => tr.remove());
+
+  const head = document.createElement("tr");
+  head.innerHTML = `<th class="root"></th>` +
+    cols.map((v) => `<th class="virtue">${v.name}</th>`).join("") +
+    `<th class="rev">reviewed</th>`;
+  t.appendChild(head);
+
+  for (const r of rows) {
+    const tr = document.createElement("tr");
+    tr.innerHTML =
+      `<th class="root">${r.name}</th>` +
+      cols.map((v) => {
+        const n = at.get(`${r.id}|${v.id}`) || 0;
+        if (!n) return `<td></td>`;
+        return `<td class="c${Math.min(n, 4)}">${n}</td>`;
+      }).join("") +
+      `<td class="rev"></td>`;
+    t.appendChild(tr);
+  }
+
+  const foot = document.createElement("tr");
+  foot.innerHTML =
+    `<th class="root">reviewed</th>` +
+    cols.map((v) => `<td>${reviewed.get(v.id)?.traditions_reached ?? 0}/5</td>`).join("") +
+    `<td class="rev">${(reach.data || []).filter((r) => r.in_shared_core).length} in core</td>`;
+  t.appendChild(foot);
+
+  document.getElementById("cap").textContent =
+    `Approved strength-3 entries. Blank cells hold none. ` +
+    `${(cells.data || []).length} cells populated across ${rows.length} roots. ` +
+    `The bottom row counts lineages with an outside label; five reach the shared core. ` +
+    `Every cell is zero today.`;
+}
+</script>
+</body>
+</html>

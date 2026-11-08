@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>VirtuOS — entry</title>
+<style>
+  :root {
+    --paper:#fffff8; --ink:#111; --muted:#6b6b6b; --rule:#e6e1d4; --hair:#cfc8b6;
+  }
+  html { background:var(--paper); }
+  body { margin:0; color:var(--ink); font:17px/1.62 Georgia, "Iowan Old Style", "Times New Roman", serif; }
+  main { max-width: 1020px; margin:0 auto; padding:44px 28px 100px; }
+  .kicker { font-variant:small-caps; letter-spacing:.08em; color:var(--muted); font-size:12px; }
+  h1 { font-size:30px; font-weight:normal; line-height:1.2; margin:8px 0 6px; }
+  .meta { color:var(--muted); font-size:13px; font-style:italic; }
+  .row { display:grid; grid-template-columns: minmax(0,1fr) 250px; gap:56px;
+         border-top:1px solid var(--rule); padding:20px 0 6px; }
+  .row:first-of-type { border-top:1px solid var(--hair); }
+  .head { font-variant:small-caps; letter-spacing:.05em; font-size:12.5px; color:var(--muted); margin-bottom:6px; }
+  p { margin:0 0 14px; }
+  aside { font-size:12.5px; line-height:1.45; color:var(--muted); padding-top:2px; }
+  aside b { font-weight:normal; font-variant:small-caps; letter-spacing:.04em; color:var(--ink); }
+  blockquote { margin:0 0 12px; padding-left:14px; border-left:1px solid var(--hair); }
+  blockquote.orig { font-size:18px; }
+  a { color:var(--ink); text-underline-offset:3px; }
+  .tags { font-variant:small-caps; letter-spacing:.04em; font-size:13px; }
+  .tags span + span::before { content:" · "; color:var(--muted); }
+  input, button { font:inherit; font-size:14px; padding:5px 9px; border:1px solid var(--hair);
+                  background:transparent; border-radius:0; color:var(--ink); }
+  button { border-color:var(--ink); cursor:pointer; }
+  .err { color:#8a2a1f; font-size:13px; margin-top:8px; }
+  .list { margin-top:24px; }
+  .list a { display:block; padding:7px 0; border-bottom:1px solid var(--rule); text-decoration:none; }
+  .list small { color:var(--muted); font-variant:small-caps; letter-spacing:.05em; }
+  @media (max-width: 760px) {
+    .row { grid-template-columns: 1fr; gap:6px; }
+    aside { padding-bottom:14px; }
+  }
+</style>
+</head>
+<body>
+<main>
+  <div class="kicker">VirtuOS</div>
+  <div id="crumb" class="meta"></div>
+  <section id="signin" style="margin-top:28px">
+    <input id="email" type="email" placeholder="email">
+    <input id="password" type="password" placeholder="password">
+    <button id="go">Sign in</button>
+    <div id="msg" class="err"></div>
+  </section>
+  <section id="body"></section>
+</main>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
+<script>
+const db = supabase.createClient(
+  "https://tgfbsplvimtzoxtffkpx.supabase.co",
+  "sb_publishable_o0cVWcYynklEDtSgECbW4Q_2RCg8Y1O"
+);
+const id = new URLSearchParams(location.search).get("id");
+const esc = (s) => (s ?? "").replace(/[&<>"]/g, (c) => ({ "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;" }[c]));
+
+document.getElementById("go").onclick = async () => {
+  const { error } = await db.auth.signInWithPassword({
+    email: document.getElementById("email").value.trim(),
+    password: document.getElementById("password").value,
+  });
+  if (error) { document.getElementById("msg").textContent = error.message; return; }
+  document.getElementById("signin").hidden = true;
+  id ? renderEntry() : renderList();
+};
+
+function section(head, body, note) {
+  return `<div class="row"><div><div class="head">${head}</div>${body}</div><aside>${note || ""}</aside></div>`;
+}
+
+async function renderList() {
+  const { data } = await db.from("entries")
+    .select("id, story_title, situation, status")
+    .is("retired_at", null).order("story_title").limit(300);
+  document.getElementById("crumb").textContent = `${data?.length ?? 0} entries shown`;
+  document.getElementById("body").innerHTML = `<div class="list">` +
+    (data || []).map((e) => `<a href="?id=${e.id}">${esc(e.story_title || e.situation.slice(0, 70))}
+      <br><small>${esc(e.status)}</small></a>`).join("") + `</div>`;
+}
+
+async function renderEntry() {
+  const { data: e, error } = await db.from("entries")
+    .select(`id, story_title, situation, wise_response, why_it_worked, tempting_wrong_answer,
+             original_text, edition, scholarly_translation, scholarly_source, ai_translation,
+             ai_model, ai_translated_at, key_terms, translation_notes, translation_status,
+             verified_by, draft_origin, drafted_by, narrative_form, agent_unit, beneficiary_unit,
+             status, created_at, retired_at, origin_tradition_id,
+             sources(title, author, date_or_era, citation, original_language, licence, layer)`)
+    .eq("id", id).single();
+  if (error) { document.getElementById("body").textContent = error.message; return; }
+
+  const { data: evs } = await db.from("entry_virtues").select("strength, virtues(name)").eq("entry_id", id);
+  const { data: labels } = await db.from("labels").select("agrees, independence").eq("entry_id", id);
+  const { data: tradition } = e.origin_tradition_id
+    ? await db.from("traditions").select("name").eq("id", e.origin_tradition_id).single()
+    : { data: null };
+
+  const s = e.sources || {};
+  const outside = (labels || []).filter((l) => l.agrees && l.independence === "outside").length;
+  const vlist = (evs || []).sort((a, b) => b.strength - a.strength)
+    .map((v) => `${esc(v.virtues?.name)} ${v.strength}`).join(" · ");
+
+  document.getElementById("crumb").innerHTML = `<a href="entry.html">all entries</a>`;
+  document.getElementById("body").innerHTML = `
+    <h1>${esc(e.story_title || "")}</h1>
+    <div class="meta">${esc(s.layer)} · ${esc(tradition?.name || "tradition unrecorded")} ·
+      ${esc(s.original_language || "language unrecorded")} · ${esc(e.status)}</div>
+
+    ${section("Situation", `<p>${esc(e.situation)}</p>`,
+      `<b>source</b><br>${esc(s.title)}<br>${esc(s.author || "")}<br>${esc(s.date_or_era || "")}`)}
+    ${section("What the wise person did or said", `<p>${esc(e.wise_response)}</p>`, "")}
+    ${section("Why it worked", `<p>${esc(e.why_it_worked)}</p>`, "")}
+    ${section("The tempting wrong answer", `<p>${esc(e.tempting_wrong_answer || "—")}</p>`, "")}
+
+    ${section("Original",
+      e.original_text
+        ? `<blockquote class="orig">${esc(e.original_text)}</blockquote>`
+        : `<p class="meta">No original-language text held.</p>`,
+      `<b>edition</b><br>${esc(e.edition || "not recorded")}`)}
+
+    ${section("Translation",
+      e.scholarly_translation
+        ? `<blockquote>${esc(e.scholarly_translation)}</blockquote>
+           <div class="meta">${esc(e.scholarly_source || "")}</div>`
+        : `<p class="meta">No scholarly translation attached.</p>` +
+          (e.ai_translation ? `<blockquote>${esc(e.ai_translation)}</blockquote>
+             <div class="meta">AI translation · ${esc(e.ai_model || "")} · ${esc((e.ai_translated_at || "").slice(0,10))}</div>` : ""),
+      `<b>state</b><br>${esc(e.translation_status)}<br>
+       ${(e.verified_by || []).length} verifier(s)<br>${outside} outside label(s)`)}
+
+    ${section("Virtues", `<p class="tags">${vlist || "none"}</p>`, "")}
+
+    ${section("Provenance",
+      `<p class="meta">${esc(s.citation || "no citation")}</p>`,
+      `<b>licence</b><br>${esc(s.licence || "unrecorded")}<br><br>
+       <b>drafted</b><br>${esc(e.drafted_by || "human")} (${esc(e.draft_origin)})<br>
+       ${esc((e.created_at || "").slice(0,10))}
+       ${e.retired_at ? `<br>retired ${esc(e.retired_at.slice(0,10))}` : ""}<br><br>
+       ${esc(e.narrative_form || "")} ${esc(e.agent_unit || "")}${e.beneficiary_unit ? " → " + esc(e.beneficiary_unit) : ""}`)}
+  `;
+}
+</script>
+</body>
+</html>

@@ -2,98 +2,116 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<title>VirtuOS — Reviewer</title>
+<title>VirtuOS — review</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <style>
-  :root { --ink:#1a1a1a; --muted:#666; --line:#ddd; --bg:#faf9f7; --accent:#2b5d4f; }
-  * { box-sizing: border-box; }
-  body { margin:0; font:16px/1.55 Georgia, "Iowan Old Style", serif; color:var(--ink); background:var(--bg); }
-  main { max-width: 720px; margin: 0 auto; padding: 40px 20px 80px; }
-  h1 { font-size: 22px; font-weight: 600; margin: 0 0 4px; }
-  .sub { color: var(--muted); font-size: 14px; margin-bottom: 28px; }
-  .card { background:#fff; border:1px solid var(--line); border-radius:8px; padding:24px; margin-bottom:20px; }
-  .label { font-size:12px; letter-spacing:.08em; text-transform:uppercase; color:var(--muted); margin-bottom:6px; }
-  .part { margin-bottom:18px; }
-  .part p { margin:0; }
-  .meta { font-size:13px; color:var(--muted); margin-bottom:14px; }
-  input, textarea, button { font: inherit; }
-  input, textarea { width:100%; padding:10px 12px; border:1px solid var(--line); border-radius:6px; background:#fff; }
-  textarea { min-height:90px; resize:vertical; }
-  button { padding:10px 18px; border-radius:6px; border:1px solid var(--accent); background:var(--accent); color:#fff; cursor:pointer; }
-  button.secondary { background:#fff; color:var(--accent); }
-  button:disabled { opacity:.45; cursor:default; }
-  .row { display:flex; gap:10px; align-items:center; margin-top:12px; }
-  .error { color:#8a2a1f; font-size:14px; margin-top:10px; }
-  .ok { color:var(--accent); font-size:14px; margin-top:10px; }
-  .rule { font-size:13px; color:var(--muted); border-left:3px solid var(--line); padding-left:12px; margin:18px 0; }
-  .hidden { display:none; }
-  .tag { display:inline-block; font-size:12px; color:var(--muted); border:1px solid var(--line); border-radius:99px; padding:2px 10px; }
+  :root { --paper:#fffff8; --ink:#111; --muted:#6b6b6b; --rule:#e6e1d4; --hair:#cfc8b6; }
+  html { background:var(--paper); }
+  body { margin:0; color:var(--ink); font:17px/1.62 Georgia, "Iowan Old Style", "Times New Roman", serif; }
+  main { max-width: 760px; margin:0 auto; padding:44px 26px 100px; }
+  .kicker { font-variant:small-caps; letter-spacing:.08em; color:var(--muted); font-size:12px; }
+  h1 { font-size:28px; font-weight:normal; margin:6px 0 4px; }
+  .sub { color:var(--muted); font-size:13px; font-style:italic; margin-bottom:30px; }
+  section { border-top:1px solid var(--rule); padding:20px 0 8px; }
+  .head { font-variant:small-caps; letter-spacing:.05em; font-size:12.5px; color:var(--muted); margin-bottom:6px; }
+  p { margin:0 0 14px; }
+  .meta { color:var(--muted); font-size:13px; }
+  .prompt { font-style:italic; font-size:18px; margin-bottom:16px; }
+  .note { font-size:13px; color:var(--muted); border-top:1px solid var(--rule);
+          padding-top:12px; margin:18px 0; line-height:1.55; }
+  textarea { width:100%; min-height:84px; font:inherit; font-size:15px; padding:8px 10px;
+             border:1px solid var(--hair); background:transparent; border-radius:0; color:var(--ink); resize:vertical; }
+  input { font:inherit; font-size:15px; padding:6px 10px; border:1px solid var(--hair);
+          background:transparent; border-radius:0; color:var(--ink); }
+  button { font:inherit; font-size:15px; padding:7px 16px; border:1px solid var(--ink);
+           background:transparent; color:var(--ink); border-radius:0; cursor:pointer; }
+  button:hover { background:#f4efe2; }
+  button:disabled { opacity:.4; cursor:default; }
+  .row { display:flex; gap:12px; align-items:center; margin-top:14px; }
+  .err { color:#8a2a1f; font-size:13px; margin-top:10px; }
+  .ok { color:#2b5d4f; font-size:13px; margin-top:10px; }
+  .bar { height:1px; background:var(--rule); margin:10px 0 18px; position:relative; }
+  .bar i { position:absolute; left:0; top:0; height:1px; background:var(--ink); display:block; }
+  .tags { font-variant:small-caps; letter-spacing:.05em; font-size:12.5px; color:var(--muted); }
+  .tags span + span::before { content:" · "; }
+  [hidden] { display:none !important; }
 </style>
 </head>
 <body>
 <main>
-  <h1>VirtuOS reviewer</h1>
-  <div class="sub">One entry, one virtue at a time. Your answer is a label, not an approval.</div>
+  <div class="kicker">VirtuOS</div>
+  <h1>Review</h1>
+  <div class="sub">One entry, one virtue. Your answer is a label, not an approval.</div>
 
-  <section id="signin" class="card">
-    <div class="label">Sign in</div>
-    <p class="meta">Use the email and password you were given. Nothing is stored on this page.</p>
+  <section id="signin">
+    <div class="head">Sign in</div>
+    <p class="meta">Use the email and password you were given.</p>
     <input id="email" type="email" placeholder="email" autocomplete="username">
-    <div style="height:10px"></div>
+    <div style="height:8px"></div>
     <input id="password" type="password" placeholder="password" autocomplete="current-password">
     <div class="row"><button id="signinBtn">Sign in</button></div>
-    <div id="signinMsg" class="error"></div>
+    <div id="signinMsg" class="err"></div>
   </section>
 
-  <section id="queue" class="hidden">
-    <div class="card" id="entryCard">
-      <div class="meta" id="entryMeta"></div>
-      <div class="part"><div class="label">Situation</div><p id="situation"></p></div>
-      <div class="part"><div class="label">What the wise person did or said</div><p id="wise"></p></div>
-      <div class="part"><div class="label">Why it worked</div><p id="why"></p></div>
-      <div class="part"><div class="label">The tempting wrong answer</div><p id="tempting"></p></div>
+  <section id="queue" hidden>
+    <div class="meta" id="progress"></div>
+    <div class="bar"><i id="barFill" style="width:0%"></i></div>
+
+    <div class="tags" id="entryMeta"></div>
+
+    <div class="head" style="margin-top:20px">Situation</div>
+    <p id="situation"></p>
+
+    <div class="head">What the wise person did or said</div>
+    <p id="wise"></p>
+
+    <div class="head">Why it worked</div>
+    <p id="why"></p>
+
+    <div class="head">The tempting wrong answer</div>
+    <p id="tempting"></p>
+  </section>
+
+  <section id="judgment" hidden>
+    <div class="head">Your judgment</div>
+    <p class="prompt" id="prompt"></p>
+
+    <div class="note">
+      <b>V1 — the lesson test.</b> The virtue must be the lesson, not merely present. Remove
+      every other virtue: is the response still intelligible as an instance of this one?<br><br>
+      <b>V2 — the contrast test.</b> The tempting wrong answer must be the opposite of the same
+      virtue.<br><br>
+      Luke 6:31 counts for reciprocity, not mercy — the lesson is the Golden Rule. The Lion and
+      the Mouse counts for gratitude, not mercy — the lesson is that the small can repay the great.
     </div>
 
-    <div class="card">
-      <div class="label">Your judgment</div>
-      <p style="margin:0 0 8px" id="prompt"></p>
-      <div class="rule">
-        <strong>V1 — the lesson test.</strong> The virtue must be the lesson, not merely
-        present. Remove every other virtue: is the response still intelligible as an
-        instance of this one?<br><br>
-        <strong>V2 — the contrast test.</strong> The tempting wrong answer must be the
-        opposite of the same virtue.<br><br>
-        Worked examples: Luke 6:31 counts for reciprocity, not mercy — the lesson is the
-        Golden Rule. The Lion and the Mouse counts for gratitude, not mercy — the lesson
-        is that the small can repay the great.
-      </div>
-      <textarea id="notes" placeholder="If you disagree, say why. Required when disagreeing."></textarea>
-      <div class="row">
-        <button id="agreeBtn">Agree</button>
-        <button id="disagreeBtn" class="secondary">Disagree</button>
-      </div>
-      <div id="msg" class="error"></div>
+    <textarea id="notes" placeholder="If you disagree, say why. Required when disagreeing."></textarea>
+    <div class="row">
+      <button id="agreeBtn">Agree</button>
+      <button id="disagreeBtn">Disagree</button>
+      <span class="meta">A · D · S to skip</span>
     </div>
+    <div id="msg"></div>
+  </section>
 
-    <div class="card hidden" id="doneCard">
-      <div class="label">Queue empty</div>
-      <p>No entries left for you to label. Thank you.</p>
-    </div>
+  <section id="doneCard" hidden>
+    <div class="head">Queue empty</div>
+    <p>No entries left for you to label. Thank you.</p>
   </section>
 </main>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
 <script>
-// Fill these two from the project settings. The publishable key is public.
 const SUPABASE_URL = "https://tgfbsplvimtzoxtffkpx.supabase.co";
 const SUPABASE_KEY = "sb_publishable_o0cVWcYynklEDtSgECbW4Q_2RCg8Y1O";
 
 const db = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 let session = null, labelerId = null, queue = [], current = null;
+const stats = { total: 0, done: 0, started: 0, seconds: 0 };
 
 const $ = (id) => document.getElementById(id);
-const show = (id) => $(id).classList.remove("hidden");
-const hide = (id) => $(id).classList.add("hidden");
+const show = (id) => $(id).removeAttribute("hidden");
+const hide = (id) => $(id).setAttribute("hidden", "");
 
 $("signinBtn").onclick = async () => {
   $("signinMsg").textContent = "";
@@ -118,22 +136,29 @@ async function start() {
     return;
   }
   labelerId = me.id;
-  hide("signin"); show("queue");
+  hide("signin"); show("queue"); show("judgment");
   await loadQueue();
 }
 
 async function loadQueue() {
-  // The server decides eligibility: strength 3, not retired, not yours,
-  // outside your lineage, not already labeled by you.
   const { data, error } = await db.rpc("reviewer_queue");
   if (error) { $("signinMsg").textContent = error.message; return; }
   queue = data ?? [];
+  stats.total = queue.length;
   next();
+}
+
+function progress() {
+  const avg = stats.done ? Math.round(stats.seconds / stats.done) : 0;
+  $("progress").textContent =
+    `${stats.done} labeled · ${Math.max(stats.total - stats.done, 0)} remaining` +
+    (avg ? ` · ${avg}s per entry` : "");
+  $("barFill").style.width = stats.total ? `${Math.round((stats.done / stats.total) * 100)}%` : "0%";
 }
 
 function next() {
   current = queue.shift();
-  if (!current) { hide("entryCard"); hide("msg"); show("doneCard"); return; }
+  if (!current) { hide("queue"); hide("judgment"); show("doneCard"); return; }
   render(current);
 }
 
@@ -144,10 +169,10 @@ async function render(pair) {
   const { data: v } = await db.from("virtues").select("name").eq("id", pair.virtue_id).single();
   if (!e || !v) { next(); return; }
 
-  // Blind: no tradition, no status, no other virtues, no existing labels.
-  $("entryMeta").innerHTML = `<span class="tag">${e.sources?.layer ?? ""}</span>
-    <span class="tag">${e.sources?.original_language ?? "language unrecorded"}</span><br><br>
-    ${e.sources?.title ?? ""}<br><span style="font-size:12px">${e.sources?.citation ?? ""}</span>`;
+  $("entryMeta").innerHTML =
+    `<span>${e.sources?.layer ?? ""}</span>` +
+    `<span>${e.sources?.original_language ?? "language unrecorded"}</span>` +
+    `<span>${e.sources?.title ?? ""}</span>`;
   $("situation").textContent = e.situation;
   $("wise").textContent = e.wise_response;
   $("why").textContent = e.why_it_worked;
@@ -155,13 +180,17 @@ async function render(pair) {
   $("prompt").textContent = `Does this entry teach ${v.name} as its lesson (V1), with the tempting wrong answer as its opposite (V2)?`;
   $("notes").value = "";
   $("msg").textContent = "";
+  $("msg").className = "";
   hide("doneCard");
+  stats.started = Date.now();
+  progress();
 }
 
 async function cast(agrees) {
   $("msg").textContent = "";
+  $("msg").className = "";
   const notes = $("notes").value.trim();
-  if (!agrees && !notes) { $("msg").textContent = "A disagreement needs a reason."; return; }
+  if (!agrees && !notes) { $("msg").className = "err"; $("msg").textContent = "A disagreement needs a reason."; return; }
   $("agreeBtn").disabled = $("disagreeBtn").disabled = true;
   const { data, error } = await db.rpc("cast_label", {
     p_entry: current.entry_id,
@@ -170,16 +199,29 @@ async function cast(agrees) {
     p_notes: notes || null,
   });
   $("agreeBtn").disabled = $("disagreeBtn").disabled = false;
-  if (error) { $("msg").textContent = error.message; return; }
+  if (error) { $("msg").className = "err"; $("msg").textContent = error.message; return; }
   $("msg").className = "ok";
   $("msg").textContent = data === "outside"
     ? "Recorded. You are outside this entry's lineage, so it counts."
     : "Recorded. You share a lineage with this entry, so it is stored but does not count.";
-  setTimeout(next, 900);
+  stats.done += 1;
+  if (stats.started) stats.seconds += Math.round((Date.now() - stats.started) / 1000);
+  progress();
+  setTimeout(next, 800);
 }
 
 $("agreeBtn").onclick = () => cast(true);
 $("disagreeBtn").onclick = () => cast(false);
+
+document.addEventListener("keydown", (ev) => {
+  if (!current || $("queue").hasAttribute("hidden")) return;
+  const tag = document.activeElement?.tagName;
+  if (tag === "TEXTAREA" || tag === "INPUT") return;
+  const k = ev.key.toLowerCase();
+  if (k === "a") { ev.preventDefault(); cast(true); }
+  else if (k === "d") { ev.preventDefault(); cast(false); }
+  else if (k === "s") { ev.preventDefault(); next(); }
+});
 </script>
 </body>
 </html>
