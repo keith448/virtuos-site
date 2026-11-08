@@ -21,31 +21,6 @@ writeFileSync(
 );
 
 writeFileSync(
-  resolve(out, "vercel.json"),
-  JSON.stringify(
-    {
-      cleanUrls: true,
-      headers: [
-        {
-          source: "/(reviewer|coverage)",
-          headers: [
-            { key: "X-Robots-Tag", value: "noindex, nofollow" },
-            { key: "X-Frame-Options", value: "DENY" },
-            { key: "Referrer-Policy", value: "no-referrer" },
-          ],
-        },
-        {
-          source: "/entry",
-          headers: [{ key: "X-Frame-Options", value: "DENY" }],
-        },
-      ],
-    },
-    null,
-    2,
-  ) + "\n",
-);
-
-writeFileSync(
   resolve(out, "index.html"),
   `<!doctype html><meta charset="utf-8"><meta name="robots" content="noindex">
 <title>VirtuOS</title>
