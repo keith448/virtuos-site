@@ -38,3 +38,15 @@ Discrepancy:
   - none observed by builder
 Escalation to human:
   - none
+
+## 2026-11-08 | Documentation review
+Builder claim:
+  - Reviewed handbook.md (v0.5), observer-log.md, institutional-charter.md, opencode.json, codebook.md, tree-v1.md, translator-batch-prompt.md, brief.md.
+Discrepancy (in observer-authored files):
+  - opencode.json: builder model `deepseek/deepseek-chat` and observer model `opencode/crouton-alpha` do not resolve on this installation. Available: `opencode-go/deepseek-v4.1-flash`, `opencode/crouton-alpha-free`. Translator `opencode/big-pickle` is correct.
+  - translator-batch-prompt.md: the two-family pilot names a Claude family and a GPT/Gemini family. Neither provider is configured. The only non-DeepSeek, non-Crouton model available is `opencode/big-pickle`, so a second family cannot currently be run.
+  - translator-batch-prompt.md line 34: "attest_translation() x2 + trigger". There is no trigger; the flip is inside `attest_translation`.
+  - observer-log freeze entry: the mercy discrepancy has no closure line. tree-v1.md is now annotated and corrected to 0.
+Escalation to human:
+  - institutional-charter.md: CC BY vs CC BY-SA conflict for the 202 Analects entries. Decision required before v1.0.
+  - A second model family is required to run the translator rotation test.

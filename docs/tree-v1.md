@@ -42,14 +42,12 @@ overstate independence, never understate it, and the overstatement is visible.
 |---|---|---|
 | reciprocity | 6 | 6 |
 | gratitude | 4 | 3 |
-| mercy | 3 | 2 |
+| mercy | 3 | 0 |
 
 Gratitude lost a lineage because Japanese folk and Japanese are one root. Mercy
-lost one because Greek fable and Roman are one root.
-
-**Update, same day:** the codebook retag moved the mercy tags on the Lion and Mouse,
-Androclus and Yang Bao from strength 3 to 2. Mercy now stands at **0**, not 2. The
-figure in the table is the tree's effect alone; it is not the current count.
+lost one because Greek fable and Roman are one root, and lost the remaining two to
+the codebook retag, which moved its tags on the Lion and Mouse, Androclus and Yang
+Bao from strength 3 to 2. Mercy stands at 0.
 
 ## Changing the tree
 
