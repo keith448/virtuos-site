@@ -8,7 +8,7 @@
 // source rows. Re-running a batch is safe: sources upsert on external_id and
 // entries skip on source_locator.
 
-import { readFileSync } from "node:fs";
+import { readFileSync, existsSync } from "node:fs";
 import { resolve } from "node:path";
 
 const env = Object.fromEntries(
@@ -39,6 +39,14 @@ const rows = JSON.parse(readFileSync(resolve(file), "utf8"));
 if (!Array.isArray(rows)) {
   console.error("Batch must be a JSON array.");
   process.exit(1);
+}
+
+// Codebook P1: a virtue should be pre-registered before it is collected.
+const slug = (s) => s.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
+const virtueNames = [...new Set(rows.flatMap((r) => (r.virtues ?? []).map((v) => v.name)))];
+const unregistered = virtueNames.filter((n) => !existsSync(resolve("prereg", `${slug(n)}.json`)));
+if (unregistered.length) {
+  console.warn(`warning: no pre-registration for ${unregistered.join(", ")} (codebook P1)`);
 }
 
 const res = await fetch(`${URL_BASE}/rest/v1/rpc/import_entries`, {
