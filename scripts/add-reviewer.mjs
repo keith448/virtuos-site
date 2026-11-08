@@ -9,6 +9,7 @@
 //   node scripts/add-reviewer.mjs --list
 //   node scripts/add-reviewer.mjs --delete --email a@b.c
 //   node scripts/add-reviewer.mjs --reset-password --email a@b.c
+//   node scripts/add-reviewer.mjs --link --email a@b.c --role curator
 
 import { readFileSync } from "node:fs";
 import { randomBytes } from "node:crypto";
@@ -132,6 +133,76 @@ if (flag("--reset-password")) {
   console.log(`Password reset for ${email}`);
   console.log(`  user     ${u.id}`);
   console.log(`  password ${password}   ← shown once`);
+  process.exit(0);
+}
+
+// --- link an existing unlinked labeler to an account -----------------------
+if (flag("--link")) {
+  const linkRole = value("--role") ?? "curator";
+  let user = await findUser(email);
+  let madeUser = false;
+  if (!user) {
+    const r = await fetch(`${URL_BASE}/auth/v1/admin/users`, {
+      method: "POST",
+      headers: admin,
+      body: JSON.stringify({ email, password, email_confirm: true }),
+    });
+    user = await r.json();
+    if (!user.id) { console.error("User creation failed:", JSON.stringify(user)); process.exit(1); }
+    madeUser = true;
+  }
+
+  const candidates = await get(`labelers?role=eq.${linkRole}&user_id=is.null&select=id,name,tradition_ids,languages`);
+  if (!candidates.length) {
+    console.error(`No unlinked labeler with role ${linkRole}.`);
+    process.exit(1);
+  }
+  if (candidates.length > 1) {
+    console.error(`More than one unlinked ${linkRole}. Refusing to guess:`);
+    candidates.forEach((c) => console.error(`  ${c.id}  ${c.name}`));
+    process.exit(1);
+  }
+  const lb = candidates[0];
+
+  const patch = await fetch(`${URL_BASE}/rest/v1/labelers?id=eq.${lb.id}`, {
+    method: "PATCH",
+    headers: admin,
+    body: JSON.stringify({ user_id: user.id }),
+  });
+  if (!patch.ok) { console.error("Link failed:", await patch.text()); process.exit(1); }
+
+  // Record the bootstrap explicitly: an application and a decision that says what it is.
+  await fetch(`${URL_BASE}/rest/v1/reviewer_applications?on_conflict=user_id`, {
+    method: "POST",
+    headers: { ...admin, Prefer: "resolution=ignore-duplicates,return=minimal" },
+    body: JSON.stringify([{
+      user_id: user.id,
+      email,
+      name: lb.name,
+      tradition_ids: lb.tradition_ids ?? [],
+      languages: lb.languages,
+      note: `bootstrap link for role ${linkRole}`,
+    }]),
+  });
+  const apps = await get(`reviewer_applications?user_id=eq.${user.id}&select=id`);
+  if (apps[0]) {
+    await fetch(`${URL_BASE}/rest/v1/reviewer_decisions?on_conflict=application_id`, {
+      method: "POST",
+      headers: { ...admin, Prefer: "resolution=ignore-duplicates,return=minimal" },
+      body: JSON.stringify([{
+        application_id: apps[0].id,
+        decision: "bootstrap",
+        decided_by: lb.id,
+        note: `bootstrap link: first account for role ${linkRole}`,
+      }]),
+    });
+  }
+
+  console.log(`Linked ${email} to ${lb.name} (${linkRole})`);
+  console.log(`  user     ${user.id}`);
+  console.log(`  labeler  ${lb.id}`);
+  console.log(`  decision bootstrap`);
+  if (madeUser) console.log(`  password ${password}   ← shown once`);
   process.exit(0);
 }
 
