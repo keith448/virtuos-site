@@ -147,4 +147,20 @@ Discrepancy:
   - none observed by builder
 Escalation to human:
   - Recruit two readers of Greek to attest the 141 pairs (Queue A). Until then no entry is `verified`.
-  - Decide whether the 16 first-edition variants stay as `original_text` or wait for the standard text. The `edition` field names the variant, but the text is not the single-volume reading.
+  - Decision on the 16 first-edition variants: they stay as `original_text`. `edition` names the variant and the notes say the standard text is not digitised on the source page. A standard text replaces them when one is sourced.
+
+## 2026-11-09 | Import
+Builder claim:
+  - `scripts/attach-grimm-originals.mjs` joins 36 Grimm entries by KHM number to the 1857 German text on German Wikisource, and attaches the Taylor and Edwardes English from Project Gutenberg #2591. Every pair was printed and read before writing.
+  - 36 of 37 entries updated. Corpus effect: original held 1,126 → 1,162; english_only 397 → 361; German 0/37 → 36/37; `with_scholarly_translation` 189 → 225.
+  - Translation attribution: the pg-2591 text is Taylor and Edwardes, not Margaret Hunt. `scholarly_source` now names them.
+  - KHM 39 contains two tales; the English entry covers the first. The German text attached is the full KHM 39.
+  - One entry excluded by design: `The Miser in the Bush` is a retitled, softened version of KHM 110 `Der Jude im Dorn`. The backfill does not attach that original.
+  - `translation_status` remains `working` for every updated entry; no label was written.
+Observer second-pass recount (own script, from CSVs only):
+  - pending
+Discrepancy:
+  - none observed by builder
+Escalation to human:
+  - Decide the disposition of `The Miser in the Bush`: retire it, keep it as an adaptation with a warning, or attach KHM 110 with a content note.
+  - Recruit a reader of German to attest the 36 pairs.
