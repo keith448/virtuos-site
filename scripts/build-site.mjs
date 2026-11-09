@@ -58,7 +58,7 @@ writeFileSync(
   reviewer outside each lineage agreed. We publish the count with the sources behind it, so a
   reader can open the text and check the claim.</p>
 
-  <h2>Where it stands</h2>
+  <h2>What exists today</h2>
   <p>The shared core is empty. Two readers have not yet checked a single translation. About
   fifteen hundred entries sit in the corpus; a handful are approved and the rest are drafts.
   The pages below show the current state.</p>
