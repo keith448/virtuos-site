@@ -94,10 +94,11 @@ Full design: [master-plan.md](./master-plan.md).
 ## Next
 
 Record reviews, not approvals. The first reviewer is onboarded: Nicki, Catholic,
-who can label 29 of the 30 reciprocity entries. The next step is one more outside
-reviewer, then the reciprocity batch. The reviewer queues are deployed:
-`cast_label`, `attest_translation`, `cast_adjudication`, with direct writes
-revoked. Then the core fills honestly — or stays empty, which is also an answer.
+who can label 29 of the 30 reciprocity entries. Add one Islamic and one Confucian
+reviewer; those three cover every entry with two outside labels. Then the
+reciprocity batch. The reviewer queues are deployed: `cast_label`,
+`attest_translation`, `cast_adjudication`, with direct writes revoked. Then the
+core fills honestly — or stays empty, which is also an answer.
 
 ## Open questions
 
