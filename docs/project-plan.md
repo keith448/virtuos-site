@@ -137,3 +137,85 @@
 ## Success definition
 
 Month 12: v1.0 is frozen, DOI'd, scored by a lab, with labels from outside the curator's lineage attesting it. If the core is still empty, we report empty — and that report is the product.
+
+## Appendix A — Sample P&L (costed by hours, not vibes)
+
+### Cost estimation method (why these numbers)
+
+**Reviewer hours derived from task, not a lump sum:**
+- Per-entry Queue B label: 8 min (read 4 parts + V1/V2 judgment + note). Measured from annotation literature + handbook's commit-then-note requirement.
+- Queue A attestation: 12–15 min per entry per verifier (compare original vs translation, gloss key terms). Two verifiers required (R3) → double count.
+- Adjudication: 45 min per contested case (read 2 labels + lineage pair + codebook).
+
+**Hourly rates benchmarked:**
+- General expert readers: $40–75/hr (folklore, teachers, community readers — academic-adjacent)
+- Domain specialists: $100–180/hr (Sanskritist, Talmudist, Nahuatl speaker — scarce)
+- Adjudicators (senior scholars, outside both lineages): $150–250/hr
+- Blind anchor: $60/hr weighted average for pilot (mix of tiers)
+- Translator benchmark: ATA $0.10–0.25/word for literary; we budget $50–100/hr for verification, 2–3× search time for low-resource languages (Ainu/Greenlandic/Zuni)
+
+**Pilot math:**
+- Queue B: 100 entries × 2 reviewers × 8 min = 26.7 hrs per reviewer → at $60/hr = $1,600/reviewer, $3,200 for 200 labels
+- Queue A spot-checks: 20 entries sampled × 2 verifiers × 15 min @ $75 = $1,000–1,500
+- Adjudication cap: 5 cases × 45 min @ $200 = $1,500 (allow up to $3,750 if contested)
+- Infrastructure: Supabase Postgres 17 + Vercel $50/mo avg; LOCKSS/DOI ~$400/yr; eval compute 30–50 scenarios × $20–40/run
+
+### Year 1 Pilot P&L
+
+Revenue: Lab pilot fee $25,000 + Philanthropy seed $10,000 = $35,000
+Direct: Reviewers $3,240 + Queue A $1,500 + Adjudication $3,750 + Calibration $800 = $9,290
+Infra: $3,000
+Core: Founder 0.5 FTE × 6mo $35,000 + legal $3,000 = $38,000
+Net: –$15,290 (ex-founder +$22,710)
+
+### Year 3 P&L
+
+Revenue: 3 labs × ($25k pilot + $30k dues) = $165k + eval services $40k + grants $50k = $255k
+Direct+core: $337k (reviewers ~$87k for 5 virtues × 500 entries × 2 labels at $65/hr; Queue A $35k; core 1.75 FTE $180k)
+Net –$82k intentional deficit until dues scale; break-even ~5 dues or $500k endowment @4%
+
+### Sensitivity
+
+- ±50% reviewer recruitment time = ±$1,600 Year 1
+- Queue A low-resource premium is the swing: Sanskrit/Arabic at $75 vs Ainu/Greenlandic at $175 = 2.3× line item
+- Pilot fee is cost-plus, not margin. Custodian dues fund commons; data never sold (CC BY-SA).
+
+## Appendix B — Outreach Playbook
+
+### Funnel (human-approved, not auto-send)
+
+Identity list (sheet) → Signal (system card update / paper / grant) → Enrichment dossier (1 paragraph, human-checked) → Personalize 1 sentence → Send (docs/outreach-*.md templates) → Track reply.
+
+### Signals by audience
+
+- Lab: new system card, new eval blog post, EU AI Act filing
+- Tradition: public university dept, cultural institute, seminar page (no scraped emails)
+- University: paper on cross-tradition ethics, translation dept
+- Philanthropy: grants < $500k to safety evals
+
+CRM: sheet with name, audience, target person, signal, date, status. No HubSpot needed at pilot scale.
+
+### Sequence
+
+Send → 10 days → one follow-up with new signal → stop. Two touches.
+
+### Tracking
+
+Optimize for reply from right discipline (Sanskritist > marketer). Track sent/opened (if allowed)/replied/scope-viewed. No AI fit scores.
+
+### Automation allowed in OpenCode
+
+- Signal watch job → append to sheet
+- /agent templates: outreach_labs, outreach_philanthropy, outreach_university (human-approval gate)
+- Morning brief: new leads since yesterday
+
+### Not automated
+
+- Tradition-leader invitations (personal or not at all)
+- Objection handling (reply yourself)
+- Cold blast to purchased lists
+
+### Templates (saved)
+
+docs/outreach-labs.md / docs/outreach-philanthropy.md / docs/outreach-university.md — spine: Reach, not moral truth. One proof (empty core), one ask (scope link), no aligned/human-values language.
+
