@@ -29,7 +29,7 @@ writeFileSync(
   html { background:var(--paper); }
   body { margin:0; color:var(--ink); font:17px/1.62 Georgia, "Iowan Old Style", serif; }
   main { max-width:660px; margin:0 auto; padding:56px 26px 100px; }
-  .kicker { font-variant:small-caps; letter-spacing:.08em; color:var(--muted); font-size:12px; }
+  .kicker { font-variant:small-caps; letter-spacing:.12em; color:var(--ink); font-size:15px; }
   h1 { font-weight:normal; font-size:30px; margin:8px 0 6px; }
   h2 { font-weight:normal; font-size:15px; font-variant:small-caps; letter-spacing:.06em;
        color:var(--muted); margin:34px 0 8px; border-top:1px solid var(--rule); padding-top:16px; }
