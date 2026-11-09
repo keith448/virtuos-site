@@ -25,12 +25,12 @@ Full design: [master-plan.md](./master-plan.md).
 
 ## State, 2026-11-08
 
-- 1,523 live entries: 10 approved, 1,513 draft, 0 in review. 147 retired.
-- Provenance: 1,162 entries hold their original-language text; **361 are english_only**
+- 1,522 live entries: 10 approved, 1,512 draft, 0 in review. 148 retired.
+- Provenance: 1,162 entries hold their original-language text; **360 are english_only**
   — drafted from a translation, no original held. `entry_provenance` reports this per
   entry. Held: Arabic 700/700, Classical Chinese 202/202, Ancient Greek 142/192,
-  German 36/37, Coptic 23/23, Hebrew 14/14, Sanskrit 11/11, Pali 10/10. Not held:
-  Greek 50/192, German 1/37, Russian 0/36, English 0/27, Georgian 0/23, Punjabi 0/23,
+  German 36/36, Coptic 23/23, Hebrew 14/14, Sanskrit 11/11, Pali 10/10. Not held:
+  Greek 50/192, Russian 0/36, English 0/27, Georgian 0/23, Punjabi 0/23,
   Inuit 0/22, Tamil 0/19.
 - Aesop: 141 fables now carry Chambry's Greek and Townsend's 1867 English, joined by
   the Townsend, Perry and Chambry numbers the corpus already implies. Sixteen use
@@ -38,10 +38,12 @@ Full design: [master-plan.md](./master-plan.md).
   source page. Fifty remain without Greek: 46 have Perry numbers the digitised
   Chambry selection does not carry, and 4 have no Perry number at all. None has been
   read by a Greek speaker; `translation_status` stays `working` for all of them.
-- Grimm: 36 tales now carry the 1857 German text and the Taylor and Edwardes English,
-  joined by KHM number. One is left alone. The English entry `The Miser in the Bush`
-  retitles and softens KHM 110, `Der Jude im Dorn`; attaching that original is a
-  human decision. The German text has not been read by a German speaker.
+- Grimm: 36 live tales carry the 1857 German text and the Taylor and Edwardes English,
+  joined by KHM number. The thirty-seventh was retired. `The Miser in the Bush` is a
+  retitled, softened KHM 110, `Der Jude im Dorn`, and the entry uses only the opening
+  act of generosity from a tale whose plot turns on anti-Jewish violence. The record
+  is kept with the reason on the entry. The German text has not been read by a German
+  speaker.
 - Sanskrit: 11 entries, all carrying original text and a named edition; none verified.
 - Pali: 10 Dhammapada entries carry the Pali and Sujato's CC0 translation. The 147
   older Jataka entries were retired as unprovenanced and are excluded from counts.

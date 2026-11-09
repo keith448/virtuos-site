@@ -29,7 +29,7 @@
 ### WS1 — Corpus & Provenance
 - Greek re-source: 142/192 hold the original; 50 remain, all outside the digitised
   Chambry selection
-- German: 36/37 hold the 1857 original; one retitled adaptation waits on a decision
+- German: 36/36 live entries hold the 1857 original; the KHM 110 adaptation was retired
 - Sanskrit: 11/11 verified via Queue A
 - Sanskrit pilot (11 entries): Big Pickle translator + Claude batch, Observer compares, Queue A verifies (2 readers)
 - Analects: CC BY-SA decision landed; ensure v1.0 manifest cites transcription

@@ -164,3 +164,13 @@ Discrepancy:
 Escalation to human:
   - Decide the disposition of `The Miser in the Bush`: retire it, keep it as an adaptation with a warning, or attach KHM 110 with a content note.
   - Recruit a reader of German to attest the 36 pairs.
+
+## 2026-11-09 | Decision
+Builder claim:
+  - Founder delegated the disposition of `The Miser in the Bush`. Decision: retire it. This closes the KHM 110 escalation in the import entry above.
+  - The entry is an English retelling of KHM 110. The retelling swaps the original's Jewish target for a "miser", and the entry's four parts keep only the opening act of generosity. A dataset of how good people act should not carry a laundered version of that tale.
+  - `retired_at` set and `retired_reason` records the finding. Effect: live 1,523 → 1,522; retired 147 → 148; english_only 361 → 360; German 36/36 live. Reach counts do not move, because the entry was a draft.
+Discrepancy:
+  - none
+Escalation to human:
+  - Recruit a reader of German to attest the 36 pairs.
