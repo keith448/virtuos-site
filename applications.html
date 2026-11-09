@@ -137,11 +137,11 @@ async function render() {
 function card(a, tname, decided) {
   const traditions = (a.tradition_ids || []).map((id) => tname.get(id) || id).join(", ");
   return `<div style="border-top:1px solid var(--rule);padding:14px 0">
-    <p><b>${esc(a.name)}</b> <span class="meta">${esc(a.email)} · ${esc((a.created_at || "").slice(0, 10))}</span></p>
+    <p><b>${esc(a.name)}</b> <span class="meta"><a href="mailto:${esc(a.email)}">${esc(a.email)}</a> · ${esc((a.created_at || "").slice(0, 10))}</span></p>
     <div class="tags"><span>${esc(traditions)}</span>
       ${a.languages?.length ? `<span>${esc(a.languages.join(", "))}</span>` : ""}
       ${a.discipline ? `<span>${esc(a.discipline)}</span>` : ""}</div>
-    ${a.note ? `<p style="margin-top:8px">${esc(a.note)}</p>` : ""}
+    ${a.note ? `<p style="margin-top:8px;white-space:pre-line">${esc(a.note)}</p>` : ""}
     ${decided ? "" : `
       <textarea data-note="${a.id}" placeholder="Decision note, optional"></textarea>
       <div class="row">

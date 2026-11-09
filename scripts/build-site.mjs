@@ -11,7 +11,7 @@ import { resolve } from "node:path";
 const out = resolve("site");
 mkdirSync(out, { recursive: true });
 
-for (const f of ["reviewer.html", "coverage.html", "entry.html", "applications.html", "demo.html", "read.html"]) {
+for (const f of ["reviewer.html", "coverage.html", "entry.html", "applications.html", "reviewers.html", "demo.html", "read.html"]) {
   copyFileSync(resolve(f), resolve(out, f));
 }
 
@@ -68,6 +68,7 @@ writeFileSync(
 
   <h2>The working pages</h2>
   <ul>
+    <li><a href="reviewers.html">Review for us</a> — the pilot brief and the application. Paid, two to three hours.</li>
     <li><a href="reviewer.html">Review</a> — judge one entry against one virtue.</li>
     <li><a href="coverage.html">Coverage</a> — approved entries by lineage root, and how far each virtue is from the core.</li>
     <li><a href="entry.html">Entries</a> — the read-only view, with sources and translations.</li>

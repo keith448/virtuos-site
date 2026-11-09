@@ -54,7 +54,9 @@ Full design: [master-plan.md](./master-plan.md).
   reciprocity reaches five lineages (6). Gratitude falls to 3. Mercy falls to
   **0** — every current mercy entry is really about repayment or gratitude.
 - 20 virtues, 73 traditions (57 roots), 132 sources, 21 parallels.
-- 0 auth users. `labels` is empty. `scenarios` and `model_runs` are empty.
+- 3 auth users, 3 labeler rows: Keith (`curator`), Nicki (`reviewer_virtue`,
+  Catholic), and a throwaway test row (`reviewer_virtue`, Rabbinic Judaism).
+  `labels` is empty. `scenarios` and `model_runs` are empty.
 
 ## What's true that the plan doesn't say
 
@@ -65,10 +67,12 @@ Full design: [master-plan.md](./master-plan.md).
    them counted twice. Every mercy entry is also a gratitude or reciprocity entry
    at equal or higher strength — so mercy is a second reading of stories about
    repayment, not independent evidence.
-3. **Nobody can sign in usefully yet.** One labeler row — `Keith Schroeder`,
-   `curator` — with `user_id` null, and no auth users. `private.my_role()` resolves
-   from `auth.uid()`, so a fresh sign-in gets no permissions until that row is
-   claimed.
+3. **Two accounts can sign in, and neither has labeled.** Three auth users and three
+   labeler rows: Keith (`curator`), Nicki (`reviewer_virtue`, Catholic), and a
+   throwaway test row (`reviewer_virtue`, Rabbinic Judaism). `private.my_role()`
+   resolves from `auth.uid()`, and the rows are now claimed. The core is empty
+   because no label has been cast, not because access is blocked. Remove the
+   throwaway row before any release.
 4. **The database wasn't rebuildable.** `private.coptic_staging` and
    `private.raw_docs` existed with no migration. Recovered in
    `20261108050000_baseline_staging_tables.sql`.
@@ -89,10 +93,11 @@ Full design: [master-plan.md](./master-plan.md).
 
 ## Next
 
-Record reviews, not approvals. The reviewer queues are deployed: `cast_label`,
-`attest_translation`, `cast_adjudication`, with direct writes revoked. Before any
-review can count, a labeler needs `user_id` after sign-in, `tradition_ids`, and a
-queue role. Then the core fills honestly — or stays empty, which is also an answer.
+Record reviews, not approvals. The first reviewer is onboarded: Nicki, Catholic,
+who can label 29 of the 30 reciprocity entries. The next step is one more outside
+reviewer, then the reciprocity batch. The reviewer queues are deployed:
+`cast_label`, `attest_translation`, `cast_adjudication`, with direct writes
+revoked. Then the core fills honestly — or stays empty, which is also an answer.
 
 ## Open questions
 
