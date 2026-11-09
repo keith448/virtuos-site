@@ -1,4 +1,4 @@
-"""Command line: virtuos stats | list | test | export."""
+"""Command line: virtuos stats | list | validate | test | export."""
 
 from __future__ import annotations
 
@@ -13,6 +13,8 @@ from .corpus import Corpus
 from .providers import get_provider
 from .runner import run
 from .scenarios import build_items
+from .validate import report as validation_report
+from .validate import validate as validate_items
 
 
 def _split(values: list[str] | None) -> list[str] | None:
@@ -71,6 +73,7 @@ def cmd_test(args) -> int:
         layers=layers,
         n=None if args.n == 0 else args.n,
         seed=args.seed,
+        design=args.design,
     )
     if not items:
         print("No items matched those filters.", file=sys.stderr)
@@ -90,6 +93,7 @@ def cmd_test(args) -> int:
         out_dir=args.out,
         model=args.model,
         corpus_version=corpus.version,
+        design=args.design,
         label=args.label,
         verbose=not args.quiet,
     )
@@ -105,6 +109,29 @@ def cmd_export(args) -> int:
     return 0
 
 
+def cmd_validate(args) -> int:
+    corpus = _corpus(args)
+    items = build_items(
+        corpus,
+        virtues=_split(args.virtue),
+        layers=_split(args.layer),
+        n=None if args.n == 0 else args.n,
+        seed=args.seed,
+        design=args.design,
+    )
+    if not items:
+        print("No items matched those filters.", file=sys.stderr)
+        return 1
+    text = validation_report(validate_items(items))
+    print(text)
+    if args.out:
+        from pathlib import Path
+
+        Path(args.out).write_text(text, encoding="utf-8")
+        print(f"Wrote {args.out}")
+    return 0
+
+
 def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(prog="virtuos", description="VirtuOS corpus tools and benchmark runner")
     parser.add_argument("--version", action="version", version=f"virtuos-eval {__version__}")
@@ -113,12 +140,13 @@ def build_parser() -> argparse.ArgumentParser:
     for name, func, help_text in [
         ("stats", cmd_stats, "counts by layer, virtue and tradition"),
         ("list", cmd_list, "list entries"),
+        ("validate", cmd_validate, "check items for position, length and copy cues"),
         ("test", cmd_test, "run the forced-choice benchmark against a model"),
         ("export", cmd_export, "write the bundled corpus to a file"),
     ]:
         p = sub.add_parser(name, help=help_text)
         p.set_defaults(func=func)
-        if name in {"stats", "list", "test"}:
+        if name in {"stats", "list", "validate", "test"}:
             p.add_argument("--file", help="read a corpus JSONL instead of the bundled one")
 
     p = sub.choices["list"]
@@ -130,8 +158,16 @@ def build_parser() -> argparse.ArgumentParser:
     p.add_argument("--with-original", action="store_true", default=None)
     p.add_argument("--limit", type=int, default=20)
 
+    p = sub.choices["validate"]
+    p.add_argument("--virtue", action="append", help="repeat or comma-separate; default all")
+    p.add_argument("--layer", action="append", help="repeat or comma-separate; default all")
+    p.add_argument("--design", default="fit", choices=["fit", "temptation"])
+    p.add_argument("--n", type=int, default=0, help="number of items, 0 for all")
+    p.add_argument("--seed", type=int, default=0)
+    p.add_argument("--out", help="write the report to a markdown file")
+
     p = sub.choices["test"]
-    p.add_argument("--provider", default="echo", choices=["echo", "random", "openai", "anthropic", "ollama"])
+    p.add_argument("--provider", default="echo", choices=["echo", "random", "longest", "shortest", "openai", "anthropic", "ollama"])
     p.add_argument("--model")
     p.add_argument("--api-key")
     p.add_argument("--base-url")
@@ -139,6 +175,7 @@ def build_parser() -> argparse.ArgumentParser:
     p.add_argument("--letter", default="A", help="answer for the echo provider")
     p.add_argument("--virtue", action="append", help="repeat or comma-separate; default all")
     p.add_argument("--layer", action="append", help="repeat or comma-separate; default all")
+    p.add_argument("--design", default="fit", choices=["fit", "temptation"])
     p.add_argument("--n", type=int, default=30, help="number of items, 0 for all")
     p.add_argument("--seed", type=int, default=0)
     p.add_argument("--out", help="output directory")

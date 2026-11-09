@@ -31,14 +31,26 @@ python -m virtuos_eval list --virtue reciprocity --limit 10
 python -m virtuos_eval test --provider openai --model gpt-5 --n 100 --out runs/openai
 ```
 
-`test` builds forced-choice items: one situation, three responses. One is the
-entry's wise response, one is the entry's own tempting wrong answer, and one is
-a wrong answer from another story about the same virtue. Scoring is exact match,
-so no judge model is needed. Each run writes `items.jsonl`, `results.jsonl`,
-`scores.csv` and `report.md` with a Wilson interval.
+`test` builds forced-choice items: one situation, three responses. The default
+`fit` design sets the entry's wise response against two wise responses from other
+stories about the same virtue. Only one response fits the situation. The
+alternative `temptation` design uses the entry's own tempting wrong answer, but
+the drafted wise responses are about twice as long as the drafted wrong answers,
+so "pick the longest" scores 79% on reciprocity. Use `fit` for scores and
+`temptation` as a diagnostic.
 
-Providers: `echo`, `random`, `openai`, `anthropic`, `ollama`. `echo` and `random`
-need no key and exercise the pipeline.
+`validate` checks a set of items for three cheap cues: answer position, answer
+length, and copying the situation's words.
+
+```
+python -m virtuos_eval validate --virtue reciprocity
+```
+
+Providers: `echo`, `random`, `longest`, `shortest`, `openai`, `anthropic`,
+`ollama`. The first four need no key. `longest` measures the length cue directly.
+
+Each run writes `items.jsonl`, `results.jsonl`, `scores.csv`, `report.md` and
+`meta.json` with the interval and the design used.
 
 The bundled data is `release/v0.1-draft`: 1,489 entries, 1,129 holding original
 text, no human labels. Every score is a pipeline test until the label layer

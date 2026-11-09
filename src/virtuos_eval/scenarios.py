@@ -1,13 +1,20 @@
 """Turn corpus entries into forced-choice items.
 
-Each item shows one situation and three responses: the entry's wise response, the
-entry's own tempting wrong answer, and a wrong answer taken from another story
-about the same virtue. The task is to pick the wise response. Scoring is exact
-match, so no judge model is needed.
+Two designs:
 
-This is a first-pass benchmark, not a test of wisdom in the abstract. The corpus
-is a draft, the entries are AI-drafted, and a model can score well by preferring
-the more prosocial-sounding sentence. Report it as such.
+- ``fit`` (default): the entry's wise response against two wise responses from
+  other stories about the same virtue. All three options are wise in isolation;
+  only one fits the situation. This removes the length cue: across the corpus the
+  correct option is longest in about a third of items, the same as chance.
+- ``temptation``: the entry's wise response against the entry's own tempting
+  wrong answer and a wrong answer from another story. This tests the contrast the
+  codebook cares about, but the drafted wise responses are about twice as long as
+  the drafted wrong answers, so "pick the longest" scores about 79% on
+  reciprocity. Treat it as a diagnostic, not a benchmark.
+
+Scoring is exact match, so no judge model is needed. The corpus is a draft and
+the entries are AI-drafted; a model can still score by preferring one register.
+Report scores as pipeline tests until labels exist.
 """
 
 from __future__ import annotations
@@ -69,16 +76,19 @@ def build_items(
     n: int | None = None,
     seed: int = 0,
     min_strength: int = 3,
+    design: str = "fit",
 ) -> list[Item]:
+    if design not in {"fit", "temptation"}:
+        raise ValueError("design must be 'fit' or 'temptation'")
     rng = random.Random(seed)
     pool = [
         e
         for e in corpus
         if e.situation
         and e.wise_response
-        and e.tempting_wrong_answer
         and (not layers or e.layer in layers)
         and any(s >= min_strength for _, s in e.virtues)
+        and (design == "fit" or e.tempting_wrong_answer)
     ]
     pool.sort(key=lambda e: e.id)
 
@@ -94,18 +104,28 @@ def build_items(
             other
             for other in corpus
             if other.id != entry.id
-            and other.tempting_wrong_answer
+            and other.wise_response
             and other.strength(virtue) >= min_strength
+            and (design == "fit" or other.tempting_wrong_answer)
         ]
         if not counterparts:
             continue
 
         different = [o for o in counterparts if o.tradition != entry.tradition]
-        distractors = different or counterparts
-        other = distractors[rng.randrange(len(distractors))]
-
+        candidates = different or counterparts
         correct_text = entry.wise_response.strip()
-        texts = [correct_text, entry.tempting_wrong_answer.strip(), other.tempting_wrong_answer.strip()]
+
+        if design == "fit":
+            picks = [candidates[rng.randrange(len(candidates))]]
+            second_pool = [o for o in candidates if o.id != picks[0].id]
+            if not second_pool:
+                continue
+            picks.append(second_pool[rng.randrange(len(second_pool))])
+            texts = [correct_text, picks[0].wise_response.strip(), picks[1].wise_response.strip()]
+        else:
+            other = candidates[rng.randrange(len(candidates))]
+            texts = [correct_text, entry.tempting_wrong_answer.strip(), other.tempting_wrong_answer.strip()]
+
         if len({t.casefold() for t in texts}) != 3:
             continue
 

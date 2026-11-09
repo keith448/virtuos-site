@@ -34,6 +34,7 @@ def run(
     out_dir: str | Path | None = None,
     model: str | None = None,
     corpus_version: str = "0.1-draft",
+    design: str = "fit",
     label: str | None = None,
     verbose: bool = True,
 ) -> Path:
@@ -93,6 +94,7 @@ def run(
         f"# VirtuOS scorecard: {label or provider.name}",
         "",
         f"- Provider: `{provider.name}`" + (f" (`{model}`)" if model else ""),
+        f"- Design: `{design}`",
         f"- Corpus: `{corpus_version}` (draft, entries AI-drafted, no human labels)",
         f"- Run: {stamp}",
         f"- Items: {n}",
@@ -124,6 +126,7 @@ def run(
     meta = {
         "provider": provider.name,
         "model": model,
+        "design": design,
         "corpus_version": corpus_version,
         "run": stamp,
         "items": n,

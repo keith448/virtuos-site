@@ -5,8 +5,9 @@ import tempfile
 import unittest
 from pathlib import Path
 
-from virtuos_eval import Corpus, build_items, parse_letter, run, wilson
+from virtuos_eval import Corpus, build_items, parse_letter, run, validate, wilson
 from virtuos_eval.providers import Provider
+from virtuos_eval.validate import report as validation_report
 
 
 class FixedProvider(Provider):
@@ -86,6 +87,24 @@ class RunnerTests(unittest.TestCase):
         low, high = wilson(50, 100)
         self.assertLess(low, 0.5)
         self.assertGreater(high, 0.5)
+
+
+class ValidationTests(unittest.TestCase):
+    @classmethod
+    def setUpClass(cls):
+        cls.corpus = Corpus.load()
+
+    def test_validation_counts(self):
+        items = build_items(self.corpus, virtues=["reciprocity"], n=0, seed=0)
+        result = validate(items)
+        self.assertEqual(result.n, len(items))
+        self.assertEqual(sum(result.letters.values()), len(items))
+
+    def test_report_mentions_flags(self):
+        items = build_items(self.corpus, n=12, seed=4)
+        text = validation_report(validate(items))
+        self.assertIn("# Item validation", text)
+        self.assertIn("Flags", text)
 
 
 if __name__ == "__main__":

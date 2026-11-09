@@ -56,6 +56,39 @@ class RandomProvider(Provider):
         return self._rng.choice(LETTERS)
 
 
+def _options(prompt: str) -> dict[str, str]:
+    found = {}
+    for line in prompt.splitlines():
+        match = re.match(r"^([ABC])\. (.*)$", line)
+        if match:
+            found[match.group(1)] = match.group(2)
+    return found
+
+
+class LongestProvider(Provider):
+    """Picks the longest option. Measures how much the length cue is worth."""
+
+    name = "longest"
+
+    def complete(self, prompt: str) -> str:
+        options = _options(prompt)
+        if not options:
+            return "A"
+        return max(options, key=lambda letter: len(options[letter]))
+
+
+class ShortestProvider(Provider):
+    """Picks the shortest option, as a counter-baseline."""
+
+    name = "shortest"
+
+    def complete(self, prompt: str) -> str:
+        options = _options(prompt)
+        if not options:
+            return "A"
+        return min(options, key=lambda letter: len(options[letter]))
+
+
 def _post_json(url: str, payload: dict, headers: dict, timeout: int = 60) -> dict:
     data = json.dumps(payload).encode("utf-8")
     request = urllib.request.Request(url, data=data, headers=headers, method="POST")
@@ -159,6 +192,10 @@ def get_provider(
         return EchoProvider(letter)
     if name == "random":
         return RandomProvider(seed)
+    if name == "longest":
+        return LongestProvider()
+    if name == "shortest":
+        return ShortestProvider()
     if name == "openai":
         if not model:
             raise RuntimeError("--model is required for openai")
@@ -171,4 +208,4 @@ def get_provider(
         if not model:
             raise RuntimeError("--model is required for ollama")
         return OllamaProvider(model, host)
-    raise RuntimeError(f"unknown provider {name!r}; use echo, random, openai, anthropic or ollama")
+    raise RuntimeError(f"unknown provider {name!r}; use echo, random, longest, shortest, openai, anthropic or ollama")
