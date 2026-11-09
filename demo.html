@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>VirtuOS — how it works</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+  :root { --paper:#fffff8; --ink:#111; --muted:#6b6b6b; --rule:#e6e1d4; --hair:#cfc8b6;
+          --fill1:#f1ecdf; --fill2:#ddd2b8; --fill3:#c3b28a; --fill4:#9a8459; }
+  html { background:var(--paper); }
+  body { margin:0; color:var(--ink); font:17px/1.62 Georgia, "Iowan Old Style", "Times New Roman", serif; }
+  main { max-width: 900px; margin:0 auto; padding:48px 26px 100px; }
+  .kicker { font-variant:small-caps; letter-spacing:.12em; font-size:15px; }
+  h1 { font-weight:normal; font-size:30px; margin:8px 0 6px; }
+  h2 { font-weight:normal; font-size:15px; font-variant:small-caps; letter-spacing:.06em;
+       color:var(--muted); margin:38px 0 10px; border-top:1px solid var(--rule); padding-top:16px; }
+  p { margin:0 0 14px; }
+  .meta { color:var(--muted); font-size:13px; }
+  .lede { max-width:64ch; }
+  .cols { display:grid; grid-template-columns: 220px minmax(0,1fr); gap:40px; align-items:start; }
+  .list a { display:block; padding:6px 0; border-bottom:1px solid var(--rule);
+            text-decoration:none; color:var(--ink); font-size:14px; }
+  .list a:hover { background:#f7f3e8; }
+  .list a.on { font-weight:bold; }
+  .list small { display:block; color:var(--muted); font-variant:small-caps; letter-spacing:.05em; }
+  .part { margin-bottom:16px; }
+  .head { font-variant:small-caps; letter-spacing:.05em; font-size:12.5px; color:var(--muted); margin-bottom:4px; }
+  blockquote { margin:0 0 8px; padding-left:14px; border-left:1px solid var(--hair); }
+  blockquote.orig { font-size:18px; }
+  table { border-collapse:collapse; font-variant-numeric:tabular-nums; }
+  th, td { padding:5px 9px; font-size:13px; font-weight:normal; }
+  th.root { text-align:left; font-variant:small-caps; letter-spacing:.03em; white-space:nowrap; padding-right:22px; }
+  th.virtue { writing-mode:vertical-rl; transform:rotate(180deg); height:112px; font-size:11px;
+              font-variant:small-caps; color:var(--muted); text-align:left; padding:0 4px 6px; }
+  td { text-align:right; min-width:26px; }
+  tr td { border-bottom:1px solid var(--rule); }
+  td.c1 { background:var(--fill1); } td.c2 { background:var(--fill2); }
+  td.c3 { background:var(--fill3); } td.c4 { background:var(--fill4); color:#fff; }
+  caption { caption-side:bottom; text-align:left; font-size:12.5px; color:var(--muted); padding-top:14px; max-width:700px; }
+  .ticks { display:inline-flex; gap:2px; vertical-align:middle; }
+  .ticks i { width:5px; height:12px; border:1px solid var(--hair); display:block; }
+  a { color:var(--ink); text-underline-offset:3px; }
+  @media (max-width: 720px) { .cols { grid-template-columns:1fr; gap:18px; } }
+</style>
+</head>
+<body>
+<main>
+  <div class="kicker">VirtuOS</div>
+  <h1>How it works</h1>
+  <div class="lede">
+    <p>Everything public is shown here without signing in. There are ten approved entries today.
+    The rest of the corpus is drafts, and the shared core is empty.</p>
+  </div>
+
+  <h2>One entry</h2>
+  <div class="cols">
+    <div class="list" id="list"></div>
+    <div id="detail"><p class="meta">Loading.</p></div>
+  </div>
+
+  <h2>The count</h2>
+  <div id="matrixWrap"><p class="meta">Loading.</p></div>
+
+  <h2>The rule</h2>
+  <p>A virtue enters the shared core when five lineage roots reached it independently and a
+  reviewer outside each lineage agreed. Rows in the table are roots, not national labels:
+  Coptic and Anglican count once because they share a transmission. The ticks are reviewed
+  lineages; five filled marks put a virtue in the core. Every tick is empty today, because no
+  outside reviewer has labeled anything yet.</p>
+
+  <p class="meta"><a href="index.html">Back</a> · Reviewers sign in at
+  <a href="reviewer.html">/reviewer</a>.</p>
+</main>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
+<script>
+const db = supabase.createClient(
+  "https://tgfbsplvimtzoxtffkpx.supabase.co",
+  "sb_publishable_o0cVWcYynklEDtSgECbW4Q_2RCg8Y1O"
+);
+const esc = (s) => (s ?? "").replace(/[&<>"]/g, (c) => ({ "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;" }[c]));
+
+let entries = [];
+
+async function boot() {
+  const [e, c] = await Promise.all([
+    db.from("public_entries").select("*").order("story_title"),
+    db.from("public_coverage").select("*"),
+  ]);
+  entries = e.data ?? [];
+  renderList();
+  if (entries[0]) select(entries[0].id);
+  renderMatrix(c.data ?? []);
+}
+
+function renderList() {
+  document.getElementById("list").innerHTML = entries.map((e) =>
+    `<a href="#" data-id="${e.id}">${esc(e.story_title || e.situation.slice(0, 48))}
+      <small>${esc(e.tradition)} · ${esc(e.layer)}</small></a>`).join("");
+  document.querySelectorAll("[data-id]").forEach((a) => {
+    a.onclick = (ev) => { ev.preventDefault(); select(a.getAttribute("data-id")); };
+  });
+}
+
+function select(id) {
+  document.querySelectorAll("[data-id]").forEach((a) =>
+    a.classList.toggle("on", a.getAttribute("data-id") === id));
+  const e = entries.find((x) => x.id === id);
+  if (!e) return;
+  document.getElementById("detail").innerHTML = `
+    <div class="meta">${esc(e.layer)} · ${esc(e.tradition)} · ${esc(e.original_language || "language unrecorded")}</div>
+    <div class="part"><div class="head">Situation</div><p>${esc(e.situation)}</p></div>
+    <div class="part"><div class="head">What the wise person did or said</div><p>${esc(e.wise_response)}</p></div>
+    <div class="part"><div class="head">Why it worked</div><p>${esc(e.why_it_worked)}</p></div>
+    <div class="part"><div class="head">The tempting wrong answer</div><p>${esc(e.tempting_wrong_answer || "—")}</p></div>
+    ${e.original_text ? `<div class="part"><div class="head">Original</div>
+      <blockquote class="orig">${esc(e.original_text)}</blockquote>
+      <div class="meta">${esc(e.edition || "")}</div></div>` : ""}
+    ${e.scholarly_translation ? `<div class="part"><div class="head">Translation</div>
+      <blockquote>${esc(e.scholarly_translation)}</blockquote>
+      <div class="meta">${esc(e.scholarly_source || "")}</div></div>` : ""}
+    ${e.ai_translation ? `<div class="part"><div class="head">AI translation</div>
+      <blockquote>${esc(e.ai_translation)}</blockquote>
+      <div class="meta">${esc(e.ai_model || "")}</div></div>` : ""}
+    <div class="part"><div class="head">Virtues</div><p>${esc(e.virtues || "none")}</p></div>
+    <div class="meta">${esc(e.citation || "")}<br>licence: ${esc(e.licence || "unrecorded")} ·
+      translation ${esc(e.translation_status)}</div>`;
+}
+
+function renderMatrix(cells) {
+  const roots = [...new Set(cells.map((c) => c.root_name))].sort();
+  const virtues = [...new Set(cells.map((c) => c.virtue))].sort();
+  const at = new Map(cells.map((c) => [`${c.root_name}|${c.virtue}`, c.entries]));
+
+  if (!cells.length) {
+    document.getElementById("matrixWrap").innerHTML = `<p class="meta">No approved entries yet.</p>`;
+    return;
+  }
+
+  const head = `<tr><th class="root"></th>${virtues.map((v) => `<th class="virtue">${esc(v)}</th>`).join("")}</tr>`;
+  const body = roots.map((r) =>
+    `<tr><th class="root">${esc(r)}</th>${virtues.map((v) => {
+      const n = at.get(`${r}|${v}`) || 0;
+      return n ? `<td class="c${Math.min(n, 4)}">${n}</td>` : `<td></td>`;
+    }).join("")}</tr>`).join("");
+  const foot = `<tr><th class="root">reviewed</th>${virtues.map(() =>
+    `<td><span class="ticks">${Array.from({ length: 5 }, () => `<i></i>`).join("")}</span></td>`).join("")}</tr>`;
+
+  document.getElementById("matrixWrap").innerHTML =
+    `<div style="overflow-x:auto"><table><caption>Approved publishable entries. Blank cells hold none.
+     ${cells.length} cells across ${roots.length} roots. Reviewed reach is zero everywhere.</caption>
+     ${head}${body}${foot}</table></div>`;
+}
+
+boot();
+</script>
+</body>
+</html>

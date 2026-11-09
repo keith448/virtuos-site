@@ -11,7 +11,7 @@ import { resolve } from "node:path";
 const out = resolve("site");
 mkdirSync(out, { recursive: true });
 
-for (const f of ["reviewer.html", "coverage.html", "entry.html", "applications.html"]) {
+for (const f of ["reviewer.html", "coverage.html", "entry.html", "applications.html", "demo.html"]) {
   copyFileSync(resolve(f), resolve(out, f));
 }
 
@@ -57,6 +57,8 @@ writeFileSync(
   <p>A virtue enters the shared core when five lineages reached it independently and a
   reviewer outside each lineage agreed. We publish the count with the sources behind it, so a
   reader can open the text and check the claim.</p>
+
+  <p><a href="demo.html">See how it works</a> — ten approved entries, no sign-in.</p>
 
   <h2>What exists today</h2>
   <p>The shared core is empty. Two readers have not yet checked a single translation. About
