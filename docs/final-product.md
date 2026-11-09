@@ -26,6 +26,8 @@ virtue test --model <endpoint> --virtue reciprocity
 
 Runs disguised scenarios against any model, scores against attested choices, writes a citable scorecard. No Supabase access required.
 
+Version 0.1 ships the draft corpus and a forced-choice runner (`virtuos test`). It writes `items.jsonl`, `results.jsonl`, `scores.csv` and `report.md` with a Wilson interval. There is no judge model and no attested scoring yet.
+
 ## Reviewer client (living standard)
 
 - `reviewer.html` — blind client. Sees layer/language/source + four parts + virtue. Hides tradition/root/status/strength.

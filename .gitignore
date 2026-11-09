@@ -1,6 +1,6 @@
 # Derived exports; regenerate with scripts/export.mjs.
-data/
-exports/
+/data/
+/exports/
 
 # Personal working chat, kept local. Do not publish.
 docs/claude-chat.md
@@ -14,5 +14,14 @@ node_modules/
 !.env.example
 .DS_Store
 *.log
-release/
-site/
+/release/
+/site/
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+runs/
+.pytest_cache/
