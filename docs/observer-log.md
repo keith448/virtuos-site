@@ -132,3 +132,19 @@ Discrepancy:
   - none
 Escalation to human:
   - none
+
+## 2026-11-09 | Import
+Builder claim:
+  - `scripts/attach-aesop-originals.mjs` joins each Aesopic fable by number: entry title → Townsend (Aesopica index) → Perry → Chambry. The three numbers are read from the source pages, not guessed. A title that matches one Townsend fable is required; the locator, which follows the Gutenberg order, is not trusted for the join.
+  - 141 of 191 Townsend entries updated with `original_text` (Greek, Chambry), `edition`, `scholarly_translation` (Townsend 1867), `scholarly_source`, `scholarly_rights` and `translation_notes`. Sixteen carry Chambry's first-edition variant, named in `edition`.
+  - Corpus effect: original held 985 → 1,126; english_only 538 → 397. Ancient Greek 1/192 → 142/192. `with_scholarly_translation` 48 → 189.
+  - 50 left unchanged: 46 fables have Perry numbers the digitised Chambry selection does not carry; 4 have no Perry number on the Townsend page (46, 61, 122, 283).
+  - Guards refuse any write where the Greek is under 60 characters, carries markup or editorial text, or where the English carries site boilerplate. All 141 passed.
+  - `translation_status` remains `working` for every updated entry; no label was written.
+Observer second-pass recount (own script, from CSVs only):
+  - pending
+Discrepancy:
+  - none observed by builder
+Escalation to human:
+  - Recruit two readers of Greek to attest the 141 pairs (Queue A). Until then no entry is `verified`.
+  - Decide whether the 16 first-edition variants stay as `original_text` or wait for the standard text. The `edition` field names the variant, but the text is not the single-volume reading.

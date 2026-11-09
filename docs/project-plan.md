@@ -27,7 +27,8 @@
 ## Workstreams
 
 ### WS1 — Corpus & Provenance
-- Target: Greek 1/192 → full re-source; Sanskrit 11/11 verified via Queue A
+- Target: Greek 1/192 → full re-source, now 142/192 with 50 fables outside the
+  digitised Chambry selection; Sanskrit 11/11 verified via Queue A
 - Sanskrit pilot (11 entries): Big Pickle translator + Claude batch, Observer compares, Queue A verifies (2 readers)
 - Analects: CC BY-SA decision landed; ensure v1.0 manifest cites transcription
 - Retire english_only aggressively; budget Queue A at 3× Queue B

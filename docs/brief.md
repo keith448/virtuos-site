@@ -26,11 +26,18 @@ Full design: [master-plan.md](./master-plan.md).
 ## State, 2026-11-08
 
 - 1,523 live entries: 10 approved, 1,513 draft, 0 in review. 147 retired.
-- Provenance: 985 entries hold their original-language text; **538 are english_only**
+- Provenance: 1,126 entries hold their original-language text; **397 are english_only**
   — drafted from a translation, no original held. `entry_provenance` reports this per
-  entry. Held: Arabic 700/700, Classical Chinese 202/202, Coptic 23/23, Hebrew 14/14,
-  Sanskrit 11/11, Pali 10/10. Not held: Greek 1/192, German 0/37, Russian 0/36,
-  English 0/27, Georgian 0/23, Punjabi 0/23, Inuit 0/22, Tamil 0/19.
+  entry. Held: Arabic 700/700, Classical Chinese 202/202, Ancient Greek 142/192,
+  Coptic 23/23, Hebrew 14/14, Sanskrit 11/11, Pali 10/10. Not held: Greek 50/192,
+  German 0/37, Russian 0/36, English 0/27, Georgian 0/23, Punjabi 0/23, Inuit 0/22,
+  Tamil 0/19.
+- Aesop: 141 fables now carry Chambry's Greek and Townsend's 1867 English, joined by
+  the Townsend, Perry and Chambry numbers the corpus already implies. Sixteen use
+  Chambry's first-edition variant because the standard text is not digitised on the
+  source page. Fifty remain without Greek: 46 have Perry numbers the digitised
+  Chambry selection does not carry, and 4 have no Perry number at all. None has been
+  read by a Greek speaker; `translation_status` stays `working` for all of them.
 - Sanskrit: 11 entries, all carrying original text and a named edition; none verified.
 - Pali: 10 Dhammapada entries carry the Pali and Sujato's CC0 translation. The 147
   older Jataka entries were retired as unprovenanced and are excluded from counts.
@@ -68,6 +75,11 @@ Full design: [master-plan.md](./master-plan.md).
    the rest as separate roots: 73 tradition rows, 57 roots. The merges are documented
    in `docs/tree-v1.md`; contested nodes are listed there and still need reviewers
    from each side.
+8. **The Aesop locators are Gutenberg positions.** `source_locator` follows the
+   Gutenberg edition, whose fable order drifts from the Aesopica Townsend index
+   after fable 288. The Greek backfill joined on title, then followed Townsend to
+   Perry to Chambry. The number in `translation_notes` is the Aesopica one and will
+   not always match the locator.
 
 ## Next
 
