@@ -261,7 +261,11 @@ async function signUpAndApply() {
   if (password.length < 8) { msg("Choose a password of at least eight characters."); return; }
 
   $("createBtn").disabled = true;
-  const { data: created, error } = await db.auth.signUp({ email, password });
+  const { data: created, error } = await db.auth.signUp({
+    email,
+    password,
+    options: { emailRedirectTo: window.location.origin + window.location.pathname },
+  });
   if (error) { $("createBtn").disabled = false; msg(error.message); return; }
 
   if (created?.session) {
