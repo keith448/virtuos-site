@@ -100,6 +100,11 @@ not count twice because two traditions tell it.
 
 ## 7. Reviewers
 
+**R0 — reviewers are people.** A label, an attestation or an adjudication counts only
+when a human produced it. A model may hold an account for testing; `labelers.kind`
+records which, and the functions reject `model`. Drafting and pre-filtering by a model
+are recorded separately and never count.
+
 **R1 — Outside the lineage.** A reviewer's `tradition_id` root must differ from the
 entry's root.
 **R2 — Not the author.** The drafter of an entry cannot attest it.

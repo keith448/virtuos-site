@@ -121,3 +121,14 @@ Discrepancy:
   - none
 Escalation to human:
   - The first real reviewer still needs an email address and a tradition.
+
+## 2026-11-09 | Human-only evidence
+Builder claim:
+  - `labelers.kind` added: `human | model`, default `human`.
+  - `cast_label`, `attest_translation` and `cast_adjudication` reject a `model` caller. `reviewer_queue` returns nothing for one. `virtue_reach` requires `lb.kind = 'human'`.
+  - Tested: a model labeler holding a tradition got an empty queue and `cast_label` raised `reviewers must be people`. Rows removed; 3 labelers, 0 non-human.
+  - Codebook R0 and handbook section 2 updated.
+Discrepancy:
+  - none
+Escalation to human:
+  - none

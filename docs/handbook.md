@@ -52,6 +52,10 @@ Queues B and C. `languages` is required for Queue A.
 
 ## 2. Independence
 
+**R0 — reviewers are people.** Only a human labeler produces evidence. A model may hold
+an account for testing; `labelers.kind` records which, and `cast_label`,
+`attest_translation`, `cast_adjudication` and `reviewer_queue` all reject `model`.
+
 **R1 — outside means outside.** A label counts only if **none** of the reviewer's
 roots equals the entry's root.
 
