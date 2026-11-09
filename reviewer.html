@@ -44,15 +44,15 @@
 <main>
   <div class="kicker">VirtuOS</div>
   <h1>Review</h1>
-  <div class="sub">One entry, one virtue. Your answer is a label, not an approval.</div>
+  <div class="sub">One entry, one virtue. Your answer is a label.</div>
   <div class="lede">
     <p>VirtuOS records how good people act across traditions. Each entry has four parts: the
     situation, what the wise person did or said, why it worked, and the tempting wrong answer.</p>
     <p>Your job is one judgment. Does this entry teach the virtue named below as its lesson?
-    You are not approving the entry. You are recording whether the lesson holds.</p>
+    Record whether it holds. Approval is someone else's job.</p>
     <p>If your traditions are outside this entry's lineage, your label counts toward that
-    virtue's reach. If you share a lineage with it, your label is stored and does not count.
-    The tradition is hidden from you, so that check is made on the server.</p>
+    virtue's reach. If you share a lineage with it, we store your label and it does not count.
+    We hide the tradition from you and run that check on the server.</p>
     <p>A virtue enters the shared core when five lineages reach it and reviewers outside each
     lineage agree. Nothing is in the core today.</p>
   </div>
@@ -64,7 +64,6 @@
     <div style="height:8px"></div>
     <input id="password" type="password" placeholder="password" autocomplete="current-password">
     <div class="row"><button id="signinBtn">Sign in</button></div>
-    <div class="meta" style="margin-top:8px">Use the email and password you were sent.</div>
     <div id="signinMsg" class="err"></div>
   </section>
 
@@ -114,12 +113,13 @@
     <p class="prompt" id="prompt"></p>
 
     <div class="note">
-      <b>V1 — the lesson test.</b> The virtue must be the lesson, not merely present. Remove
-      every other virtue: is the response still intelligible as an instance of this one?<br><br>
+      <b>V1 — the lesson test.</b> The virtue has to be what the entry teaches. Strip the other
+      virtues away and ask whether the response still reads as an instance of this one.<br><br>
       <b>V2 — the contrast test.</b> The tempting wrong answer must be the opposite of the same
       virtue.<br><br>
-      Luke 6:31 counts for reciprocity, not mercy — the lesson is the Golden Rule. The Lion and
-      the Mouse counts for gratitude, not mercy — the lesson is that the small can repay the great.
+      Luke 6:31 is about reciprocity. The lesson is the Golden Rule, so mercy does not count.
+      The Lion and the Mouse is about gratitude: the small can repay the great. It does not
+      count for mercy.
     </div>
 
     <textarea id="notes" placeholder="If you disagree, say why. Required when disagreeing."></textarea>
@@ -133,7 +133,7 @@
 
   <section id="doneCard" hidden>
     <div class="head">Queue empty</div>
-    <p>No entries left for you to label. Thank you.</p>
+    <p>Nothing left in the queue.</p>
   </section>
 </main>
 

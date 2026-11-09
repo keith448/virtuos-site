@@ -41,33 +41,39 @@ writeFileSync(
 </style>
 <main>
   <div class="kicker">VirtuOS</div>
-  <h1>Prove your model's values come from somewhere other than you.</h1>
+  <h1>A way to check where a model's values come from.</h1>
 
-  <p>VirtuOS is a dataset of how good people act, gathered across the world's traditions,
-  and the test built on top of it. Every entry has four parts: the situation, what the wise
-  person did or said, why it worked, and the tempting wrong answer. Each entry names its
-  source, and where the text survives, the original language and the edition it came from.</p>
+  <p>VirtuOS is a dataset of how good people act, drawn from traditions around the world, and
+  a test built on it. Every entry has four parts: the situation, what the wise person did or
+  said, why it worked, and the tempting wrong answer. Each entry names its source. Where the
+  text survives, it carries the original language and the edition.</p>
+
+  <p>It began with a question about the people who build models. Most come from a narrow set
+  of disciplines, and the values in the systems came largely from their employers. The
+  traditions have worked on the same question for much longer: how a person should act when
+  nobody is watching. Almost none of that work reached the models. The first draft was a pile
+  of fables and scripture, which proved nothing on its own. The rule came next.</p>
 
   <p>A virtue enters the shared core when five lineages reached it independently and a
-  reviewer outside each lineage agreed. The count is published with the sources behind it,
-  so a reader can open the text and check the claim.</p>
+  reviewer outside each lineage agreed. We publish the count with the sources behind it, so a
+  reader can open the text and check the claim.</p>
 
   <h2>Where it stands</h2>
-  <p>The shared core is empty. No translation has been verified by two readers. The corpus
-  holds about fifteen hundred entries; a small number are approved and the rest are drafts.
-  The pages below show that state without rounding it up.</p>
+  <p>The shared core is empty. Two readers have not yet checked a single translation. About
+  fifteen hundred entries sit in the corpus; a handful are approved and the rest are drafts.
+  The pages below show the current state.</p>
 
   <h2>The working pages</h2>
   <ul>
-    <li><a href="reviewer.html">Review</a> — one entry, one virtue, one judgment. Sign-in required.</li>
-    <li><a href="coverage.html">Coverage</a> — approved entries by lineage root, and distance to the core.</li>
+    <li><a href="reviewer.html">Review</a> — judge one entry against one virtue.</li>
+    <li><a href="coverage.html">Coverage</a> — approved entries by lineage root, and how far each virtue is from the core.</li>
     <li><a href="entry.html">Entries</a> — the read-only view, with sources and translations.</li>
   </ul>
 
   <h2>For labs</h2>
-  <p>The data is free to cite under CC BY-SA 4.0. What we sell is measurement: a pilot in
-  which your model is scored against entries your reviewers did not choose, with the sources
-  attached to every case. The code is Apache-2.0.</p>
+  <p>The data is free to cite under CC BY-SA 4.0. We sell measurement: a pilot where your
+  model answers entries your reviewers did not choose, with the sources attached to every
+  case. The code is Apache-2.0.</p>
 
   <p>Keith Schroeder · <a href="mailto:keith@mirepoixpartners.com">keith@mirepoixpartners.com</a></p>
 
