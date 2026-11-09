@@ -1,28 +1,4 @@
-#!/usr/bin/env node
-// Build the deployable site: only the three public HTML files plus robots.txt.
-// The repo root holds .env with the service key, so never deploy the root.
-//
-//   node scripts/build-site.mjs
-//   npx vercel deploy site --prod
-
-import { readFileSync, writeFileSync, mkdirSync, copyFileSync } from "node:fs";
-import { resolve } from "node:path";
-
-const out = resolve("site");
-mkdirSync(out, { recursive: true });
-
-for (const f of ["reviewer.html", "coverage.html", "entry.html", "applications.html", "reviewers.html", "demo.html", "read.html"]) {
-  copyFileSync(resolve(f), resolve(out, f));
-}
-
-writeFileSync(
-  resolve(out, "robots.txt"),
-  "User-agent: *\nDisallow: /\n",
-);
-
-writeFileSync(
-  resolve(out, "index.html"),
-  `<!doctype html><meta charset="utf-8"><meta name="robots" content="noindex">
+<!doctype html><meta charset="utf-8"><meta name="robots" content="noindex">
 <title>VirtuOS</title>
 <style>
   :root { --paper:#fffff8; --ink:#111; --muted:#6b6b6b; --rule:#e6e1d4; }
@@ -82,7 +58,4 @@ writeFileSync(
   <p>Keith Schroeder · <a href="mailto:keith@mirepoixpartners.com">keith@mirepoixpartners.com</a></p>
 
   <p class="muted">Curators: <a href="applications.html">applications</a>.</p>
-</main>`,
-);
-
-console.log("Built site/ — Vercel runs this on deploy; the folder is gitignored.");
+</main>
